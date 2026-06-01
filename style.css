@@ -1,0 +1,8 @@
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 3%;
+    border: solid 2px #000;
+    float: left;
+    margin-right: 30px;
+}
