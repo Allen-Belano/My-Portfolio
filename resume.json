@@ -1,0 +1,90 @@
+{
+  "personalInfo": {
+    "name": "John Doe",
+    "email": "john.doe@email.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "New York, NY",
+    "website": "www.johndoe.com",
+    "summary": "Experienced web developer with 5+ years in front-end and back-end technologies."
+  },
+  "skills": [
+    {
+      "category": "Frontend",
+      "skills": ["HTML", "CSS", "JavaScript", "React", "Vue.js"]
+    },
+    {
+      "category": "Backend",
+      "skills": ["Node.js", "Python", "Java", "SQL", "MongoDB"]
+    },
+    {
+      "category": "Tools",
+      "skills": ["Git", "VS Code", "Webpack", "Docker", "AWS"]
+    }
+  ],
+  "experience": [
+    {
+      "jobTitle": "Senior Web Developer",
+      "company": "Tech Company Inc.",
+      "startDate": "2021-01",
+      "endDate": "Present",
+      "description": "Lead frontend development and mentor junior developers",
+      "responsibilities": [
+        "Developed responsive web applications",
+        "Optimized performance and improved load times by 40%",
+        "Implemented CI/CD pipelines"
+      ]
+    },
+    {
+      "jobTitle": "Web Developer",
+      "company": "Digital Solutions LLC",
+      "startDate": "2018-06",
+      "endDate": "2020-12",
+      "description": "Developed full-stack web applications",
+      "responsibilities": [
+        "Built REST APIs with Node.js",
+        "Designed database schemas",
+        "Collaborated with UX/UI designers"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "institution": "State University",
+      "graduationDate": "2018-05"
+    },
+    {
+      "degree": "Associate Degree",
+      "field": "Web Development",
+      "institution": "Community College",
+      "graduationDate": "2016-05"
+    }
+  ],
+  "projects": [
+    {
+      "name": "E-Commerce Platform",
+      "description": "Full-stack e-commerce application built with React and Node.js",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe API"],
+      "link": "www.projectlink.com"
+    },
+    {
+      "name": "Task Management App",
+      "description": "Real-time collaboration tool with WebSocket support",
+      "technologies": ["Vue.js", "Firebase", "Tailwind CSS"],
+      "link": "www.taskapp.com"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2022-03"
+    },
+    {
+      "name": "Professional Scrum Master",
+      "issuer": "Scrum.org",
+      "date": "2021-06"
+    }
+  ]
+}
