@@ -10,48 +10,51 @@
 @media (max-width: 720px) { .section-shell, .site-header { width: min(100% - 32px, 560px); }.site-header { min-height: 70px; } nav { gap: 12px; } nav a { display: none; }.hero { grid-template-columns: 1fr; gap: 52px; padding-block: 68px 75px; } h1 { font-size: clamp(3rem, 15vw, 5rem); }.hero-portrait { max-width: 360px; }.section-block { padding-block: 68px; }.section-heading, .timeline-item { grid-template-columns: 1fr; gap: 18px; }.section-heading { margin-bottom: 38px; }.timeline-meta { flex-direction: row; justify-content: space-between; }.project-grid, .skills-grid { grid-template-columns: 1fr; }.project-card { min-height: 360px; padding: 24px; }.project-card h3 { margin-top: 55px; }.contact-inner { align-items: start; flex-direction: column; }.contact-band { padding-block: 68px; }.site-footer { width: calc(100% - 32px); } }
 
 /* The original resume view is intentionally simple; the button reveals the portfolio view. */
-body:not([data-theme="portfolio"]) { width: min(816px, 100%); min-height: 1056px; margin: 0 auto; padding: 24px 48px; color: #000; background: #fff; font: 11pt Arial, sans-serif; line-height: 1.35; }
+body:not([data-theme="portfolio"]) { width: min(816px, 100%); min-height: 1056px; margin: 0 auto; padding: 18px 38px; color: #000; background: #fff; font: 9px Arial, sans-serif; line-height: 1.16; }
 body:not([data-theme="portfolio"]) .section-shell, body:not([data-theme="portfolio"]) .site-header { width: auto; margin-inline: 0; }
-body:not([data-theme="portfolio"]) .site-header { min-height: 0; padding: 0 0 4px; border: 0; }
+body:not([data-theme="portfolio"]) .site-header { position: relative; min-height: 0; padding: 0; border: 0; }
 body:not([data-theme="portfolio"]) .brand { display: none; }
-body:not([data-theme="portfolio"]) nav { width: 100%; justify-content: flex-end; color: #000; }
+body:not([data-theme="portfolio"]) nav { position: fixed; top: 8px; right: 8px; z-index: 2; width: auto; justify-content: flex-end; color: #000; }
 body:not([data-theme="portfolio"]) nav a { display: none; }
-body:not([data-theme="portfolio"]) .theme-toggle { border: 1px solid #000; border-radius: 3px; padding: 4px 8px; color: #000; background: #fff; font-family: Arial, sans-serif; }
+body:not([data-theme="portfolio"]) .theme-toggle { border: 1px solid #4472c4; border-radius: 2px; padding: 3px 6px; color: #4472c4; background: #fff; font: 8px Arial, sans-serif; }
 body:not([data-theme="portfolio"]) .hero { display: block; padding: 0; }
-body:not([data-theme="portfolio"]) .hero-portrait { max-width: none; }
+body:not([data-theme="portfolio"]) .hero-portrait { display: none; }
 body:not([data-theme="portfolio"]) .portrait-frame { float: left; width: 150px; margin: 0 30px 10px 0; padding: 0; background: transparent; }
 body:not([data-theme="portfolio"]) .portrait-frame::before, body:not([data-theme="portfolio"]) .portrait-note { display: none; }
 body:not([data-theme="portfolio"]) .portrait-frame img { width: 150px; height: 150px; border: 2px solid #000; border-radius: 3%; filter: none; object-fit: cover; }
 body:not([data-theme="portfolio"]) .hero-copy { display: contents; }
 body:not([data-theme="portfolio"]) .eyebrow, body:not([data-theme="portfolio"]) .hero-actions, body:not([data-theme="portfolio"]) .proof-points { display: none; }
-body:not([data-theme="portfolio"]) h1 { max-width: none; margin: 8px 0 5px; font: bold 18pt Arial, sans-serif; line-height: normal; }
-body:not([data-theme="portfolio"]) .resume-contact { margin: 0 0 14px; font-size: 10pt; }
+body:not([data-theme="portfolio"]) h1 { max-width: none; margin: 0 0 2px; color: #4472c4; text-align: center; font: bold 15px Arial, sans-serif; line-height: normal; }
+body:not([data-theme="portfolio"]) .resume-contact { margin: 0 0 13px; color: #000; text-align: center; font-size: 7px; }
 body:not([data-theme="portfolio"]) .resume-contact a { text-decoration: none; }
-body:not([data-theme="portfolio"]) .resume-heading { margin: 0 0 3px; font-weight: bold; }
-body:not([data-theme="portfolio"]) .hero-lede { max-width: none; margin: 0 0 10px; font-size: 10pt; }
+body:not([data-theme="portfolio"]) .resume-heading { margin: 0 0 3px; color: #4472c4; font-weight: bold; }
+body:not([data-theme="portfolio"]) .hero-lede { max-width: none; margin: 0 0 9px; font-size: 8px; }
 body:not([data-theme="portfolio"]) .section-block { padding: 0; border: 0; clear: both; }
-body:not([data-theme="portfolio"]) .section-heading { display: block; margin: 12px 0 5px; border-bottom: 1px solid #000; }
-body:not([data-theme="portfolio"]) h2 { max-width: none; margin: 0; padding-bottom: 2px; font: bold 11pt Arial, sans-serif; line-height: normal; }
-body:not([data-theme="portfolio"]) .timeline-item { display: grid; grid-template-columns: minmax(0, 1fr) 245px; gap: 14px; padding: 3px 0 7px; border: 0; }
+body:not([data-theme="portfolio"]) .section-heading { display: block; margin: 8px 0 3px; border-bottom: 1px solid #000; }
+body:not([data-theme="portfolio"]) h2 { max-width: none; margin: 0; padding-bottom: 2px; color: #4472c4; font: bold 8px Arial, sans-serif; line-height: normal; }
+body:not([data-theme="portfolio"]) .timeline-item { display: grid; grid-template-columns: minmax(0, 1fr) 245px; gap: 14px; padding: 2px 0 4px; border: 0; }
 body:not([data-theme="portfolio"]) .timeline-item > div:last-child { grid-column: 1; grid-row: 1; }
-body:not([data-theme="portfolio"]) .timeline-meta { display: flex; grid-column: 2; grid-row: 1; gap: 0; text-align: right; font-size: 10pt; }
+body:not([data-theme="portfolio"]) .timeline-meta { display: flex; grid-column: 2; grid-row: 1; gap: 0; text-align: right; font-size: 8px; }
 body:not([data-theme="portfolio"]) .timeline-meta span:first-child { order: 2; }
 body:not([data-theme="portfolio"]) .timeline-meta span:last-child { order: 1; }
-body:not([data-theme="portfolio"]) h3 { margin: 0 0 2px; font: bold 10.5pt Arial, sans-serif; }
+body:not([data-theme="portfolio"]) h3 { margin: 0 0 2px; font: bold 8px Arial, sans-serif; }
 body:not([data-theme="portfolio"]) .timeline-item p { max-width: none; margin: 0 0 10px; color: #000; }
-body:not([data-theme="portfolio"]) ul { margin-top: 2px; margin-bottom: 5px; padding-left: 19px; }
-body:not([data-theme="portfolio"]) li { margin-bottom: 2px; }
+body:not([data-theme="portfolio"]) ul { margin-top: 2px; margin-bottom: 4px; padding-left: 17px; }
+body:not([data-theme="portfolio"]) li { margin-bottom: 1px; }
 body:not([data-theme="portfolio"]) .project-grid, body:not([data-theme="portfolio"]) .skills-grid { display: block; }
 body:not([data-theme="portfolio"]) .project-card { min-height: 0; padding: 0; background: transparent; border: 0; }
 body:not([data-theme="portfolio"]) .project-topline, body:not([data-theme="portfolio"]) .project-result, body:not([data-theme="portfolio"]) .tag-list { display: none; }
-body:not([data-theme="portfolio"]) .project-card h3 { margin: 5px 0 2px; font-size: 10.5pt; }
+body:not([data-theme="portfolio"]) .project-card h3 { margin: 4px 0 2px; font-size: 8px; }
 body:not([data-theme="portfolio"]) .project-card p, body:not([data-theme="portfolio"]) .skills-grid p { color: #000; }
+body:not([data-theme="portfolio"]) .skills-section { break-before: page; page-break-before: always; }
+body:not([data-theme="portfolio"]) .skills-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
 body:not([data-theme="portfolio"]) .skills-grid div { padding: 0; border: 0; }
-body:not([data-theme="portfolio"]) .contact-band { padding: 0; color: #000; background: #fff; }
+body:not([data-theme="portfolio"]) .skills-grid h3 { margin: 3px 0 1px; }
+body:not([data-theme="portfolio"]) .contact-band { display: none; padding: 0; color: #000; background: #fff; }
 body:not([data-theme="portfolio"]) .contact-inner { display: block; }
 body:not([data-theme="portfolio"]) .contact-links { display: block; color: #000; }
 body:not([data-theme="portfolio"]) .contact-links a { display: block; }
-body:not([data-theme="portfolio"]) .site-footer { display: block; padding: 0; color: #000; }
+body:not([data-theme="portfolio"]) .site-footer { display: none; padding: 0; color: #000; }
 body:not([data-theme="portfolio"]) .site-footer span { display: block; }
 @media (max-width: 600px) { body:not([data-theme="portfolio"]) { width: 100%; min-height: 0; padding: 16px; } body:not([data-theme="portfolio"]) .timeline-item { display: block; } body:not([data-theme="portfolio"]) .timeline-meta { display: block; margin-bottom: 2px; text-align: left; } }
 
