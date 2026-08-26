@@ -1,4 +1,5 @@
 :root { --ink: #17211f; --muted: #64716d; --paper: #f4f5ef; --surface: #fff; --line: #d7ded8; --accent: #d8563f; --accent-dark: #a93e2c; --soft: #e4eee5; }
+html { background: #e7e8e6; }
 [data-theme="dark"] { --ink: #eff5ee; --muted: #aab9b0; --paper: #17211f; --surface: #202d29; --line: #3d4b45; --accent: #f18169; --accent-dark: #ffab98; --soft: #2b4037; }
 * { box-sizing: border-box; } html { scroll-behavior: smooth; } body { margin: 0; color: var(--ink); background: var(--paper); font-family: 'DM Sans', sans-serif; line-height: 1.6; transition: background .25s ease, color .25s ease; } a { color: inherit; }
 .section-shell, .site-header { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }.site-header { display: flex; align-items: center; justify-content: space-between; min-height: 82px; border-bottom: 1px solid var(--line); }.brand { font: 700 1.5rem 'Space Grotesk', sans-serif; text-decoration: none; }.brand span, .project-number { color: var(--accent); } nav { display: flex; align-items: center; gap: 26px; font-size: .88rem; color: var(--muted); } nav a { text-decoration: none; } nav a:hover { color: var(--accent); }.theme-toggle { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; color: var(--ink); background: transparent; font: inherit; font-size: .78rem; cursor: pointer; }
@@ -10,7 +11,7 @@
 @media (max-width: 720px) { .section-shell, .site-header { width: min(100% - 32px, 560px); }.site-header { min-height: 70px; } nav { gap: 12px; } nav a { display: none; }.hero { grid-template-columns: 1fr; gap: 52px; padding-block: 68px 75px; } h1 { font-size: clamp(3rem, 15vw, 5rem); }.hero-portrait { max-width: 360px; }.section-block { padding-block: 68px; }.section-heading, .timeline-item { grid-template-columns: 1fr; gap: 18px; }.section-heading { margin-bottom: 38px; }.timeline-meta { flex-direction: row; justify-content: space-between; }.project-grid, .skills-grid { grid-template-columns: 1fr; }.project-card { min-height: 360px; padding: 24px; }.project-card h3 { margin-top: 55px; }.contact-inner { align-items: start; flex-direction: column; }.contact-band { padding-block: 68px; }.site-footer { width: calc(100% - 32px); } }
 
 /* The original resume view is intentionally simple; the button reveals the portfolio view. */
-body:not([data-theme="portfolio"]) { width: min(816px, 100%); min-height: 1056px; margin: 0 auto; padding: 27px 48px; color: #000; background: #fff; font: 11px Arial, sans-serif; line-height: 1.25; }
+body:not([data-theme="portfolio"]) { width: min(816px, 100%); min-height: 1056px; margin: 22px auto; padding: 27px 48px; color: #000; background: #fff; border: 1px solid #c9cbc9; box-shadow: 0 3px 14px rgba(28, 34, 31, .16); font: 11px Arial, sans-serif; line-height: 1.25; }
 body:not([data-theme="portfolio"]) .section-shell, body:not([data-theme="portfolio"]) .site-header { width: auto; margin-inline: 0; }
 body:not([data-theme="portfolio"]) .site-header { position: relative; min-height: 0; padding: 0; border: 0; }
 body:not([data-theme="portfolio"]) .brand { display: none; }
@@ -56,5 +57,5 @@ body:not([data-theme="portfolio"]) .contact-links { display: block; color: #000;
 body:not([data-theme="portfolio"]) .contact-links a { display: block; }
 body:not([data-theme="portfolio"]) .site-footer { display: none; padding: 0; color: #000; }
 body:not([data-theme="portfolio"]) .site-footer span { display: block; }
-@media (max-width: 600px) { body:not([data-theme="portfolio"]) { width: 100%; min-height: 0; padding: 16px; } body:not([data-theme="portfolio"]) .timeline-item { display: block; } body:not([data-theme="portfolio"]) .timeline-meta { display: block; margin-bottom: 2px; text-align: left; } }
+@media (max-width: 600px) { body:not([data-theme="portfolio"]) { width: calc(100% - 16px); min-height: 0; margin: 8px auto; padding: 16px; border: 1px solid #c9cbc9; box-shadow: 0 2px 8px rgba(28, 34, 31, .12); } body:not([data-theme="portfolio"]) .timeline-item { display: block; } body:not([data-theme="portfolio"]) .timeline-meta { display: block; margin-bottom: 2px; text-align: left; } }
 
