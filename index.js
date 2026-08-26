@@ -51,6 +51,7 @@ const cursor = document.querySelector('.xp-cursor');
 const xpDesktop = document.querySelector('.xp-desktop');
 const xpUserLogin = document.querySelector('.xp-user-login');
 const xpRestart = document.querySelector('.xp-restart');
+const contextMenu = document.querySelector('.xp-context-menu');
 
 xpUserLogin.addEventListener('click', () => {
 	xpDesktop.classList.add('is-logged-in');
@@ -60,6 +61,8 @@ xpUserLogin.addEventListener('click', () => {
 xpRestart.addEventListener('click', () => {
 	xpDesktop.classList.remove('is-logged-in');
 	document.querySelector('.xp-boot').setAttribute('aria-hidden', 'false');
+	contextMenu.classList.remove('is-open');
+	contextMenu.setAttribute('aria-hidden', 'true');
 });
 
 function showWindow(windowId) {
@@ -93,6 +96,26 @@ startButton.addEventListener('click', () => {
 	const isOpen = startMenu.classList.toggle('is-open');
 	startButton.setAttribute('aria-expanded', String(isOpen));
 	startMenu.setAttribute('aria-hidden', String(!isOpen));
+});
+
+xpDesktop.addEventListener('contextmenu', (event) => {
+	if (!xpDesktop.classList.contains('is-logged-in') || event.target.closest('.xp-app-window, .xp-taskbar, .xp-start-menu, .desktop-icon')) return;
+	event.preventDefault();
+	contextMenu.style.left = `${Math.min(event.clientX, window.innerWidth - 198)}px`;
+	contextMenu.style.top = `${Math.min(event.clientY, window.innerHeight - 120)}px`;
+	contextMenu.classList.add('is-open');
+	contextMenu.setAttribute('aria-hidden', 'false');
+});
+
+document.querySelectorAll('[data-context-action]').forEach((actionButton) => {
+	actionButton.addEventListener('click', () => {
+		if (actionButton.dataset.contextAction === 'open-resume') showWindow('resume-window');
+		if (actionButton.dataset.contextAction === 'refresh') xpDesktop.classList.add('is-refreshing');
+		if (actionButton.dataset.contextAction === 'properties') showWindow('about-window');
+		contextMenu.classList.remove('is-open');
+		contextMenu.setAttribute('aria-hidden', 'true');
+		window.setTimeout(() => xpDesktop.classList.remove('is-refreshing'), 250);
+	});
 });
 
 document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
@@ -148,6 +171,30 @@ document.querySelector('[data-action="power"]').addEventListener('click', () => 
 document.addEventListener('mousemove', (event) => {
 	cursor.style.left = `${event.clientX}px`;
 	cursor.style.top = `${event.clientY}px`;
+});
+
+document.addEventListener('click', (event) => {
+	if (!event.target.closest('.xp-context-menu')) {
+		contextMenu.classList.remove('is-open');
+		contextMenu.setAttribute('aria-hidden', 'true');
+	}
+});
+
+document.addEventListener('keydown', (event) => {
+	if (event.key === 'Escape') {
+		contextMenu.classList.remove('is-open');
+		contextMenu.setAttribute('aria-hidden', 'true');
+		startMenu.classList.remove('is-open');
+		startButton.setAttribute('aria-expanded', 'false');
+		startMenu.setAttribute('aria-hidden', 'true');
+	}
+	if (event.altKey && event.key === 'F4') {
+		const focusedWindow = [...document.querySelectorAll('.xp-app-window')].find((windowElement) => windowElement.classList.contains('is-focused'));
+		if (focusedWindow) {
+			focusedWindow.classList.add('is-closed');
+			event.preventDefault();
+		}
+	}
 });
 
 const taskbarClock = document.querySelector('.xp-tray time');
