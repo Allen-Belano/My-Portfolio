@@ -48,6 +48,19 @@ xpCancel.addEventListener('click', () => {
 const startButton = document.querySelector('.xp-start-button');
 const startMenu = document.querySelector('.xp-start-menu');
 const cursor = document.querySelector('.xp-cursor');
+const xpDesktop = document.querySelector('.xp-desktop');
+const xpUserLogin = document.querySelector('.xp-user-login');
+const xpRestart = document.querySelector('.xp-restart');
+
+xpUserLogin.addEventListener('click', () => {
+	xpDesktop.classList.add('is-logged-in');
+	document.querySelector('.xp-boot').setAttribute('aria-hidden', 'true');
+});
+
+xpRestart.addEventListener('click', () => {
+	xpDesktop.classList.remove('is-logged-in');
+	document.querySelector('.xp-boot').setAttribute('aria-hidden', 'false');
+});
 
 function showWindow(windowId) {
 	const appWindow = document.getElementById(windowId);
@@ -79,6 +92,7 @@ document.querySelectorAll('.xp-start-menu [data-window]').forEach((launcher) => 
 startButton.addEventListener('click', () => {
 	const isOpen = startMenu.classList.toggle('is-open');
 	startButton.setAttribute('aria-expanded', String(isOpen));
+	startMenu.setAttribute('aria-hidden', String(!isOpen));
 });
 
 document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
@@ -125,6 +139,7 @@ document.querySelector('[data-action="power"]').addEventListener('click', () => 
 	document.body.dataset.theme = 'plain';
 	startMenu.classList.remove('is-open');
 	startButton.setAttribute('aria-expanded', 'false');
+	startMenu.setAttribute('aria-hidden', 'true');
 	themeToggle.textContent = 'Portfolio design';
 	themeToggle.setAttribute('aria-label', 'Switch to portfolio design');
 	themeToggle.setAttribute('aria-pressed', 'false');
@@ -134,3 +149,10 @@ document.addEventListener('mousemove', (event) => {
 	cursor.style.left = `${event.clientX}px`;
 	cursor.style.top = `${event.clientY}px`;
 });
+
+const taskbarClock = document.querySelector('.xp-tray time');
+function updateClock() {
+	taskbarClock.textContent = new Intl.DateTimeFormat([], { hour: 'numeric', minute: '2-digit' }).format(new Date());
+}
+updateClock();
+window.setInterval(updateClock, 30000);
