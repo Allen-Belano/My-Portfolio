@@ -47,7 +47,6 @@ xpCancel.addEventListener('click', () => {
 
 const startButton = document.querySelector('.xp-start-button');
 const startMenu = document.querySelector('.xp-start-menu');
-const cursor = document.querySelector('.xp-cursor');
 const xpDesktop = document.querySelector('.xp-desktop');
 const xpUserLogin = document.querySelector('.xp-user-login');
 const xpRestart = document.querySelector('.xp-restart');
@@ -166,11 +165,6 @@ document.querySelector('[data-action="power"]').addEventListener('click', () => 
 	themeToggle.textContent = 'Portfolio design';
 	themeToggle.setAttribute('aria-label', 'Switch to portfolio design');
 	themeToggle.setAttribute('aria-pressed', 'false');
-});
-
-document.addEventListener('mousemove', (event) => {
-	cursor.style.left = `${event.clientX}px`;
-	cursor.style.top = `${event.clientY}px`;
 });
 
 document.addEventListener('click', (event) => {

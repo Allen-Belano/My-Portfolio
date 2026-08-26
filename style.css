@@ -66,7 +66,6 @@ body:not([data-theme="portfolio"]) .site-footer span { display: block; }
 @media (max-width: 600px) { body:not([data-theme="portfolio"]) { width: calc(100% - 16px); min-height: 0; margin: 8px auto; padding: 16px; border: 1px solid #c9cbc9; box-shadow: 0 2px 8px rgba(28, 34, 31, .12); } body:not([data-theme="portfolio"]) .timeline-item { display: block; } body:not([data-theme="portfolio"]) .timeline-meta { display: block; margin-bottom: 2px; text-align: left; } }
 
 body[data-theme="portfolio"] { overflow: hidden; cursor: default; background: #5aa8df; }
-body[data-theme="portfolio"] * { cursor: none; }
 body[data-theme="portfolio"] > .site-header, body[data-theme="portfolio"] > main, body[data-theme="portfolio"] > .site-footer { display: none; }
 .xp-desktop { position: fixed; inset: 0; display: none; overflow: hidden; color: #111; background: linear-gradient(#55a9ee 0 51%, #74bf4d 52% 100%); font-family: Tahoma, Arial, sans-serif; }
 body[data-theme="portfolio"] .xp-desktop { display: block; }
