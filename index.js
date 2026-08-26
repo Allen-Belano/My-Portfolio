@@ -53,12 +53,27 @@ function showWindow(windowId) {
 	const appWindow = document.getElementById(windowId);
 	if (!appWindow) return;
 	appWindow.classList.remove('is-closed', 'is-minimized');
+	focusWindow(appWindow);
 	startMenu.classList.remove('is-open');
 	startButton.setAttribute('aria-expanded', 'false');
 }
 
-document.querySelectorAll('[data-window]').forEach((launcher) => {
-	launcher.addEventListener('click', () => showWindow(launcher.dataset.window));
+function focusWindow(appWindow) {
+	document.querySelectorAll('.xp-app-window').forEach((windowElement) => windowElement.classList.remove('is-focused'));
+	appWindow.classList.add('is-focused');
+	appWindow.style.zIndex = String(Math.max(...[...document.querySelectorAll('.xp-app-window')].map((windowElement) => Number(windowElement.style.zIndex) || 2)) + 1);
+}
+
+document.querySelectorAll('.desktop-icon').forEach((launcher) => {
+	launcher.addEventListener('click', () => {
+		document.querySelectorAll('.desktop-icon').forEach((icon) => icon.classList.remove('is-selected'));
+		launcher.classList.add('is-selected');
+	});
+	launcher.addEventListener('dblclick', () => showWindow(launcher.dataset.window));
+});
+
+document.querySelectorAll('.xp-start-menu [data-window]').forEach((launcher) => {
+	launcher.addEventListener('click', () => showWindow(launcher.dataset.window || launcher.dataset.taskWindow));
 });
 
 startButton.addEventListener('click', () => {
@@ -68,11 +83,41 @@ startButton.addEventListener('click', () => {
 
 document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
 	appWindow.addEventListener('click', (event) => {
+		focusWindow(appWindow);
 		const action = event.target.dataset.action;
 		if (action === 'close') appWindow.classList.add('is-closed');
 		if (action === 'minimize') appWindow.classList.add('is-minimized');
 		if (action === 'maximize') appWindow.classList.toggle('is-maximized');
 		if (action === 'power') document.body.dataset.theme = 'plain';
+	});
+
+	const titlebar = appWindow.querySelector('.xp-app-titlebar');
+	titlebar.addEventListener('pointerdown', (event) => {
+		if (event.target.closest('button') || appWindow.classList.contains('is-maximized')) return;
+		focusWindow(appWindow);
+		const startX = event.clientX;
+		const startY = event.clientY;
+		const startLeft = appWindow.offsetLeft;
+		const startTop = appWindow.offsetTop;
+		const moveWindow = (moveEvent) => {
+			appWindow.style.left = `${startLeft + moveEvent.clientX - startX}px`;
+			appWindow.style.top = `${startTop + moveEvent.clientY - startY}px`;
+		};
+		const stopMoving = () => {
+			document.removeEventListener('pointermove', moveWindow);
+			document.removeEventListener('pointerup', stopMoving);
+		};
+		document.addEventListener('pointermove', moveWindow);
+		document.addEventListener('pointerup', stopMoving);
+	});
+});
+
+document.querySelectorAll('[data-task-window]').forEach((taskButton) => {
+	taskButton.addEventListener('click', () => {
+		const appWindow = document.getElementById(taskButton.dataset.taskWindow);
+		if (!appWindow) return;
+		if (appWindow.classList.contains('is-minimized')) showWindow(taskButton.dataset.taskWindow);
+		else appWindow.classList.toggle('is-minimized');
 	});
 });
 
