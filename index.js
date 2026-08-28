@@ -8,6 +8,19 @@ const xpTitle = document.querySelector('.xp-title');
 let isTransitioning = false;
 let pendingTheme;
 
+function setContextMenuOpen(isOpen) {
+	contextMenu.classList.toggle('is-open', isOpen);
+	contextMenu.setAttribute('aria-hidden', String(!isOpen));
+}
+
+function setTheme(theme) {
+	document.body.dataset.theme = theme;
+	const isPortfolio = theme === 'portfolio';
+	themeToggle.textContent = isPortfolio ? 'Plain resume' : 'Portfolio design';
+	themeToggle.setAttribute('aria-label', isPortfolio ? 'Switch to plain resume' : 'Switch to portfolio design');
+	themeToggle.setAttribute('aria-pressed', String(isPortfolio));
+}
+
 themeToggle.addEventListener('click', () => {
 	if (isTransitioning) return;
 	isTransitioning = true;
@@ -29,11 +42,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 xpContinue.addEventListener('click', () => {
-	document.body.dataset.theme = pendingTheme;
-	const isPortfolio = pendingTheme === 'portfolio';
-	themeToggle.textContent = isPortfolio ? 'Plain resume' : 'Portfolio design';
-	themeToggle.setAttribute('aria-label', isPortfolio ? 'Switch to plain resume' : 'Switch to portfolio design');
-	themeToggle.setAttribute('aria-pressed', String(isPortfolio));
+	setTheme(pendingTheme);
 	xpTransition.classList.remove('is-active');
 	xpTransition.setAttribute('aria-hidden', 'true');
 	isTransitioning = false;
@@ -60,8 +69,7 @@ xpUserLogin.addEventListener('click', () => {
 xpRestart.addEventListener('click', () => {
 	xpDesktop.classList.remove('is-logged-in');
 	document.querySelector('.xp-boot').setAttribute('aria-hidden', 'false');
-	contextMenu.classList.remove('is-open');
-	contextMenu.setAttribute('aria-hidden', 'true');
+	setContextMenuOpen(false);
 });
 
 function showWindow(windowId) {
@@ -102,8 +110,7 @@ xpDesktop.addEventListener('contextmenu', (event) => {
 	event.preventDefault();
 	contextMenu.style.left = `${Math.min(event.clientX, window.innerWidth - 198)}px`;
 	contextMenu.style.top = `${Math.min(event.clientY, window.innerHeight - 120)}px`;
-	contextMenu.classList.add('is-open');
-	contextMenu.setAttribute('aria-hidden', 'false');
+	setContextMenuOpen(true);
 });
 
 document.querySelectorAll('[data-context-action]').forEach((actionButton) => {
@@ -111,8 +118,7 @@ document.querySelectorAll('[data-context-action]').forEach((actionButton) => {
 		if (actionButton.dataset.contextAction === 'open-resume') showWindow('resume-window');
 		if (actionButton.dataset.contextAction === 'refresh') xpDesktop.classList.add('is-refreshing');
 		if (actionButton.dataset.contextAction === 'properties') showWindow('about-window');
-		contextMenu.classList.remove('is-open');
-		contextMenu.setAttribute('aria-hidden', 'true');
+		setContextMenuOpen(false);
 		window.setTimeout(() => xpDesktop.classList.remove('is-refreshing'), 250);
 	});
 });
@@ -158,26 +164,19 @@ document.querySelectorAll('[data-task-window]').forEach((taskButton) => {
 });
 
 document.querySelector('[data-action="power"]').addEventListener('click', () => {
-	document.body.dataset.theme = 'plain';
+	setTheme('plain');
 	startMenu.classList.remove('is-open');
 	startButton.setAttribute('aria-expanded', 'false');
 	startMenu.setAttribute('aria-hidden', 'true');
-	themeToggle.textContent = 'Portfolio design';
-	themeToggle.setAttribute('aria-label', 'Switch to portfolio design');
-	themeToggle.setAttribute('aria-pressed', 'false');
 });
 
 document.addEventListener('click', (event) => {
-	if (!event.target.closest('.xp-context-menu')) {
-		contextMenu.classList.remove('is-open');
-		contextMenu.setAttribute('aria-hidden', 'true');
-	}
+	if (!event.target.closest('.xp-context-menu')) setContextMenuOpen(false);
 });
 
 document.addEventListener('keydown', (event) => {
 	if (event.key === 'Escape') {
-		contextMenu.classList.remove('is-open');
-		contextMenu.setAttribute('aria-hidden', 'true');
+		setContextMenuOpen(false);
 		startMenu.classList.remove('is-open');
 		startButton.setAttribute('aria-expanded', 'false');
 		startMenu.setAttribute('aria-hidden', 'true');
