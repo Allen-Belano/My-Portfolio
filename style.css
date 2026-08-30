@@ -670,20 +670,21 @@ body:not([data-theme="portfolio"]) .hero-lede {
   font-size: 10px;
 }
 body:not([data-theme="portfolio"]) .section-block {
-  padding: 0;
+  padding: 12px 0 0 0;
   border: 0;
   clear: both;
 }
 body:not([data-theme="portfolio"]) .section-heading {
   display: block;
-  margin: 12px 0 5px;
-  border-bottom: 1px solid #000;
+  margin: 0 0 8px 0;
+  border: 0;
 }
 body:not([data-theme="portfolio"]) h2 {
   max-width: none;
-  margin: 0;
+  margin: 0 0 8px 0;
   padding-bottom: 3px;
   color: #4472c4;
+  border-bottom: 1px solid #4472c4;
   font:
     bold 11px Arial,
     sans-serif;
@@ -739,20 +740,34 @@ body:not([data-theme="portfolio"]) .skills-grid {
 }
 body:not([data-theme="portfolio"]) .project-card {
   min-height: 0;
-  padding: 0;
+  padding: 0 0 16px 0;
   background: transparent;
   border: 0;
+  margin-bottom: 12px;
 }
 body:not([data-theme="portfolio"]) .project-topline,
-body:not([data-theme="portfolio"]) .project-result,
+body:not([data-theme="portfolio"]) .project-result {
+  display: none;
+}
 body:not([data-theme="portfolio"]) .tag-list {
   display: none;
 }
 body:not([data-theme="portfolio"]) .project-card h3 {
-  margin: 6px 0 3px;
+  margin: 0 0 2px 0;
   font-size: 10px;
+  font-weight: bold;
+  color: #000;
 }
-body:not([data-theme="portfolio"]) .project-card p,
+body:not([data-theme="portfolio"]) .project-card p {
+  margin: 0 0 6px 0;
+  color: #666;
+  font-size: 9px;
+  font-style: italic;
+}
+body:not([data-theme="portfolio"]) .project-featured {
+  padding: 0 0 16px 0;
+  background: transparent;
+}
 body:not([data-theme="portfolio"]) .skills-grid p {
   color: #000;
 }
@@ -768,9 +783,31 @@ body:not([data-theme="portfolio"]) .skills-grid {
 body:not([data-theme="portfolio"]) .skills-grid div {
   padding: 0;
   border: 0;
+  margin-bottom: 6px;
 }
 body:not([data-theme="portfolio"]) .skills-grid h3 {
-  margin: 3px 0 1px;
+  margin: 0 0 1px 0;
+  font-size: 10px;
+}
+body:not([data-theme="portfolio"]) .education-section,
+body:not([data-theme="portfolio"]) .certifications-section {
+  padding-block: 16px;
+}
+body:not([data-theme="portfolio"]) .education-list h3 {
+  margin: 0 0 3px 0;
+  font-size: 10px;
+  font-weight: bold;
+}
+body:not([data-theme="portfolio"]) .education-list h3 .education-date {
+  float: right;
+}
+body:not([data-theme="portfolio"]) .education-list p {
+  margin: 2px 0 10px 0;
+  font-size: 10px;
+}
+body:not([data-theme="portfolio"]) .certification-list p {
+  margin: 2px 0;
+  font-size: 10px;
 }
 body:not([data-theme="portfolio"]) .contact-band {
   display: none;
