@@ -1535,12 +1535,12 @@ body[data-theme="portfolio"] .xp-desktop {
   box-shadow: inset 0 0 0 1px #c8d0da;
 }
 .resume-sheet h2 {
-  margin: 0 0 2px;
+  margin: 0 0 6px;
   color: #075bbc;
   font: bold 18px Arial;
 }
 .resume-sheet p {
-  margin: 7px 0 14px;
+  margin: 4px 0 12px;
   color: #333;
   font: 10px Arial;
   line-height: 1.4;
@@ -1548,6 +1548,13 @@ body[data-theme="portfolio"] .xp-desktop {
 .resume-sheet hr {
   border: 0;
   border-top: 1px solid #4472c4;
+  margin: 8px 0 10px;
+}
+.resume-sheet strong {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  font-weight: bold;
 }
 @media (max-width: 720px) {
   .xp-desktop-icons {
