@@ -163,6 +163,53 @@ document.querySelectorAll('[data-task-window]').forEach((taskButton) => {
 	});
 });
 
+const chatForm = document.querySelector('.chat-form');
+const chatInput = document.querySelector('#chat-input');
+const chatMessages = document.querySelector('.chat-messages');
+const chatPrompts = document.querySelectorAll('.chat-prompts button');
+
+function getChatReply(message) {
+	const question = message.toLowerCase();
+	if (question.includes('skill') || question.includes('tech') || question.includes('stack')) {
+		return 'Allen works across React, Next.js, Node.js, Express, PostgreSQL, Firebase, Supabase, Tailwind CSS, and Flutter. He also brings experience in testing, debugging, and UI/UX design.';
+	}
+	if (question.includes('project') || question.includes('work')) {
+		return 'His featured projects include VeriFi-PH, an AI-assisted credibility checker that placed Top 5 at the CodeKada Hackathon, and SA/AN Commuter Guide, a route finder with the Navvia AI assistant.';
+	}
+	if (question.includes('experience') || question.includes('job') || question.includes('intern')) {
+		return 'Allen is a Full Stack Developer at DevKada and previously worked as a Software Engineer and IT Support Intern at Viva International, supporting systems used by 4,000-5,000 employees and 500+ daily tickets.';
+	}
+	if (question.includes('contact') || question.includes('email') || question.includes('hire')) {
+		return 'You can reach Allen at belanoallen@gmail.com or connect with him on LinkedIn at linkedin.com/in/allen-belano.';
+	}
+	return 'I can tell you about Allen\'s skills, projects, experience, or how to contact him. Try one of those topics.';
+}
+
+function addChatMessage(message, sender) {
+	const messageElement = document.createElement('p');
+	messageElement.className = `chat-message chat-message-${sender}`;
+	messageElement.textContent = message;
+	chatMessages.append(messageElement);
+	chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function sendChatMessage(message) {
+	const cleanMessage = message.trim();
+	if (!cleanMessage) return;
+	addChatMessage(cleanMessage, 'user');
+	chatInput.value = '';
+	window.setTimeout(() => addChatMessage(getChatReply(cleanMessage), 'bot'), 250);
+}
+
+chatForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+	sendChatMessage(chatInput.value);
+});
+
+chatPrompts.forEach((prompt) => {
+	prompt.addEventListener('click', () => sendChatMessage(prompt.textContent));
+});
+
 document.querySelector('[data-action="power"]').addEventListener('click', () => {
 	setTheme('plain');
 	startMenu.classList.remove('is-open');

@@ -74,6 +74,10 @@
           <span class="desktop-icon-art mail-art">&#9993;</span
           ><span>Contact Me</span>
         </button>
+        <button class="desktop-icon" data-window="chat-window">
+          <span class="desktop-icon-art chat-art">&#128172;</span
+          ><span>Ask Allen</span>
+        </button>
         <button class="desktop-icon" data-window="recycle-window">
           <span class="desktop-icon-art recycle-art">&#9851;</span
           ><span>Recycle Bin</span>
@@ -298,6 +302,48 @@
         </div>
       </section>
       <section
+        class="xp-app-window chat-window"
+        id="chat-window"
+        aria-labelledby="chat-window-title"
+      >
+        <div class="xp-app-titlebar">
+          <strong id="chat-window-title">Ask Allen</strong
+          ><span class="xp-app-controls"
+            ><button data-action="minimize" aria-label="Minimize Ask Allen">
+              _</button
+            ><button data-action="maximize" aria-label="Maximize Ask Allen">
+              &#9633;</button
+            ><button data-action="close" aria-label="Close Ask Allen">
+              X
+            </button></span
+          >
+        </div>
+        <div class="xp-window-body chat-body">
+          <div class="chat-intro">
+            <span class="contact-avatar">AB</span>
+            <div>
+              <strong>Allen's assistant</strong>
+              <p>Ask me about Allen's work, skills, or projects.</p>
+            </div>
+          </div>
+          <div class="chat-messages" aria-live="polite">
+            <p class="chat-message chat-message-bot">
+              Hi! What would you like to know about Allen?
+            </p>
+          </div>
+          <div class="chat-prompts" aria-label="Suggested questions">
+            <button type="button">What are his skills?</button>
+            <button type="button">Tell me about his projects</button>
+            <button type="button">How can I contact him?</button>
+          </div>
+          <form class="chat-form">
+            <label class="sr-only" for="chat-input">Ask a question</label>
+            <input id="chat-input" name="message" type="text" autocomplete="off" placeholder="Type a question..." />
+            <button type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+      <section
         class="xp-app-window recycle-window"
         id="recycle-window"
         aria-labelledby="recycle-window-title"
@@ -325,6 +371,7 @@
             ><button data-window="resume-window">&#128196; My Resume</button
             ><button data-window="projects-window">&#128193; My Projects</button
             ><button data-window="contact-window">&#9993; Contact Me</button>
+            <button data-window="chat-window">&#128172; Ask Allen</button>
             <hr />
             <button>&#127912; Paint</button><button>&#127918; Games</button>
           </div>
@@ -350,6 +397,7 @@
           ><button data-task-window="resume-window">My Resume</button
           ><button data-task-window="projects-window">My Projects</button
           ><button data-task-window="contact-window">Contact Me</button
+          ><button data-task-window="chat-window">Ask Allen</button
           ><button data-task-window="recycle-window">Recycle Bin</button>
         </div>
         <div class="xp-tray">

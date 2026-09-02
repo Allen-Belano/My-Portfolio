@@ -1146,6 +1146,9 @@ body[data-theme="portfolio"] .xp-desktop {
   font-size: 38px;
   color: #e8edf1;
 }
+.chat-art {
+  font-size: 31px;
+}
 .xp-app-window {
   position: absolute;
   z-index: 2;
@@ -1179,6 +1182,11 @@ body[data-theme="portfolio"] .xp-desktop {
   top: 55%;
   left: 30%;
   width: 390px;
+}
+.chat-window {
+  top: 20%;
+  left: 53%;
+  width: 365px;
 }
 .recycle-window {
   display: none;
@@ -1233,6 +1241,104 @@ body[data-theme="portfolio"] .xp-desktop {
   border-bottom: 1px solid #c6c2ad;
   background: #f4f1e5;
   font-size: 10px;
+}
+.chat-body {
+  display: grid;
+  gap: 9px;
+  padding: 11px;
+  background: #dfe8f3;
+}
+.chat-intro {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #173b68;
+  font: 11px Tahoma, Arial, sans-serif;
+}
+.chat-intro .contact-avatar {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.chat-intro p {
+  margin: 2px 0 0;
+  color: #4a5c70;
+  font-size: 10px;
+}
+.chat-messages {
+  display: grid;
+  max-height: 205px;
+  gap: 7px;
+  overflow-y: auto;
+  padding: 9px;
+  border: 1px solid #9eabb9;
+  background: #fff;
+}
+.chat-message {
+  max-width: 88%;
+  margin: 0;
+  padding: 6px 8px;
+  border: 1px solid #b7c4d2;
+  color: #222;
+  font: 11px Tahoma, Arial, sans-serif;
+  line-height: 1.35;
+}
+.chat-message-bot {
+  justify-self: start;
+  background: #f1f5f9;
+}
+.chat-message-user {
+  justify-self: end;
+  border-color: #78a9d8;
+  background: #dceeff;
+}
+.chat-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.chat-prompts button {
+  padding: 4px 6px;
+  border: 1px solid #7e9dbb;
+  color: #174c72;
+  background: #edf5fc;
+  font: 10px Tahoma, Arial, sans-serif;
+  cursor: pointer;
+}
+.chat-prompts button:hover,
+.chat-prompts button:focus-visible {
+  background: #cfe6fa;
+}
+.chat-form {
+  display: flex;
+  gap: 5px;
+}
+.chat-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 6px;
+  border: 1px solid #7e9dbb;
+  font: 11px Tahoma, Arial, sans-serif;
+}
+.chat-form button {
+  padding: 4px 12px;
+  border: 1px solid #174c72;
+  color: #fff;
+  background: linear-gradient(#61a8e6, #2467aa);
+  font: bold 11px Tahoma, Arial, sans-serif;
+  cursor: pointer;
+}
+.chat-form button:hover {
+  filter: brightness(1.1);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 .xp-window-body {
   display: flex;
@@ -1609,13 +1715,17 @@ body[data-theme="portfolio"] .xp-desktop {
   .about-window,
   .resume-window,
   .projects-window,
-  .contact-window {
+  .contact-window,
+  .chat-window {
     top: 10%;
     left: 22%;
     width: calc(78% - 10px);
   }
   .contact-window {
     top: 48%;
+  }
+  .chat-window {
+    top: 20%;
   }
   .xp-window-main {
     padding: 14px;
