@@ -124,6 +124,11 @@ document.querySelectorAll('[data-context-action]').forEach((actionButton) => {
 });
 
 document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
+	const resizeHandle = document.createElement('span');
+	resizeHandle.className = 'xp-resize-handle';
+	resizeHandle.setAttribute('aria-hidden', 'true');
+	appWindow.append(resizeHandle);
+
 	appWindow.addEventListener('click', (event) => {
 		focusWindow(appWindow);
 		const action = event.target.dataset.action;
@@ -151,6 +156,32 @@ document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
 		};
 		document.addEventListener('pointermove', moveWindow);
 		document.addEventListener('pointerup', stopMoving);
+	});
+
+	resizeHandle.addEventListener('pointerdown', (event) => {
+		if (appWindow.classList.contains('is-maximized')) return;
+		event.preventDefault();
+		focusWindow(appWindow);
+		const startX = event.clientX;
+		const startY = event.clientY;
+		const startWidth = appWindow.offsetWidth;
+		const startHeight = appWindow.offsetHeight;
+		const minWidth = window.innerWidth <= 720 ? 260 : 330;
+		const minHeight = 150;
+		const moveWindowSize = (moveEvent) => {
+			const maxWidth = Math.max(minWidth, xpDesktop.clientWidth - appWindow.offsetLeft - 10);
+			const maxHeight = Math.max(minHeight, xpDesktop.clientHeight - appWindow.offsetTop - 48);
+			appWindow.style.width = `${Math.min(maxWidth, Math.max(minWidth, startWidth + moveEvent.clientX - startX))}px`;
+			appWindow.style.height = `${Math.min(maxHeight, Math.max(minHeight, startHeight + moveEvent.clientY - startY))}px`;
+		};
+		const stopResizing = () => {
+			appWindow.classList.remove('is-resizing');
+			document.removeEventListener('pointermove', moveWindowSize);
+			document.removeEventListener('pointerup', stopResizing);
+		};
+		appWindow.classList.add('is-resizing');
+		document.addEventListener('pointermove', moveWindowSize);
+		document.addEventListener('pointerup', stopResizing);
 	});
 });
 
