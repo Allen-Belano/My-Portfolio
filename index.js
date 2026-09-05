@@ -191,14 +191,26 @@ function addChatMessage(message, sender) {
 	messageElement.textContent = message;
 	chatMessages.append(messageElement);
 	chatMessages.scrollTop = chatMessages.scrollHeight;
+	return messageElement;
 }
 
 function sendChatMessage(message) {
 	const cleanMessage = message.trim();
-	if (!cleanMessage) return;
+	if (!cleanMessage || chatForm.classList.contains('is-typing')) return;
 	addChatMessage(cleanMessage, 'user');
 	chatInput.value = '';
-	window.setTimeout(() => addChatMessage(getChatReply(cleanMessage), 'bot'), 250);
+	chatForm.classList.add('is-typing');
+	chatInput.disabled = true;
+	chatForm.querySelector('button').disabled = true;
+	const typingMessage = addChatMessage('Allen is typing...', 'typing');
+	window.setTimeout(() => {
+		typingMessage.remove();
+		addChatMessage(getChatReply(cleanMessage), 'bot');
+		chatForm.classList.remove('is-typing');
+		chatInput.disabled = false;
+		chatForm.querySelector('button').disabled = false;
+		chatInput.focus();
+	}, 450);
 }
 
 chatForm.addEventListener('submit', (event) => {

@@ -1319,6 +1319,17 @@ body[data-theme="portfolio"] .xp-desktop {
   border-color: #78a9d8;
   background: #dceeff;
 }
+.chat-message-typing {
+  justify-self: start;
+  color: #5c6d7e;
+  background: #e8eef4;
+  font-style: italic;
+}
+.chat-form button:disabled,
+.chat-form input:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
 .chat-prompts {
   display: flex;
   flex-wrap: wrap;
