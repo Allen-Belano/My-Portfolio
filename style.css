@@ -1,4 +1,10 @@
 :root {
+  --body-font: "DM Sans", sans-serif;
+  --display-font: "Space Grotesk", sans-serif;
+  --resume-blue: #4472c4;
+  --resume-blue-dark: #075bbc;
+  --xp-blue: #1466ca;
+  --xp-blue-dark: #08489b;
   --ink: #17211f;
   --muted: #64716d;
   --paper: #f4f5ef;
@@ -31,7 +37,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--body-font);
   line-height: 1.6;
   transition:
     background 0.25s ease,
@@ -92,7 +98,7 @@ a {
   justify-content: space-between;
   padding: 5px 8px;
   color: #fff;
-  background: linear-gradient(#3d96ef, #0957b5 52%, #08489b);
+  background: linear-gradient(#3d96ef, #0957b5 52%, var(--xp-blue-dark));
   font-weight: bold;
   text-shadow: 1px 1px #164b86;
 }
@@ -217,7 +223,7 @@ a {
 }
 .brand {
   font:
-    700 1.5rem "Space Grotesk",
+    700 1.5rem var(--display-font),
     sans-serif;
   text-decoration: none;
 }
@@ -266,7 +272,7 @@ nav a:hover {
 h1,
 h2,
 h3 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: var(--display-font);
   line-height: 1.08;
 }
 h1 {
@@ -597,10 +603,10 @@ body:not([data-theme="portfolio"]) nav a {
   display: none;
 }
 body:not([data-theme="portfolio"]) .theme-toggle {
-  border: 1px solid #4472c4;
+  border: 1px solid var(--resume-blue);
   border-radius: 2px;
   padding: 4px 8px;
-  color: #4472c4;
+  color: var(--resume-blue);
   background: #fff;
   font:
     10px Arial,
@@ -643,7 +649,7 @@ body:not([data-theme="portfolio"]) .proof-points {
 body:not([data-theme="portfolio"]) h1 {
   max-width: none;
   margin: 0 0 2px;
-  color: #4472c4;
+  color: var(--resume-blue);
   text-align: center;
   font:
     bold 16px Arial,
@@ -663,10 +669,10 @@ body:not([data-theme="portfolio"]) .resume-contact a {
 }
 body:not([data-theme="portfolio"]) .resume-heading {
   margin: 6px 0 4px;
-  color: #4472c4;
+  color: var(--resume-blue);
   font: bold 11px Arial, sans-serif;
   text-transform: uppercase;
-  border-bottom: 1px solid #4472c4;
+  border-bottom: 1px solid var(--resume-blue);
   padding-bottom: 2px;
 }
 body:not([data-theme="portfolio"]) .hero-lede {
@@ -707,8 +713,8 @@ body:not([data-theme="portfolio"]) h2 {
   max-width: none;
   margin: 0;
   padding-bottom: 2px;
-  color: #4472c4;
-  border-bottom: 1px solid #4472c4;
+  color: var(--resume-blue);
+  border-bottom: 1px solid var(--resume-blue);
   font:
     bold 11px Arial,
     sans-serif;
@@ -1237,7 +1243,7 @@ body[data-theme="portfolio"] .xp-desktop {
   justify-content: space-between;
   padding: 4px 5px 4px 8px;
   color: #fff;
-  background: linear-gradient(#3d9af4, #1466ca 48%, #0751ae);
+  background: linear-gradient(#3d9af4, var(--xp-blue) 48%, var(--xp-blue-dark));
   font-size: 12px;
   text-shadow: 1px 1px #174b86;
 }
@@ -1465,7 +1471,7 @@ body[data-theme="portfolio"] .xp-desktop {
 .contact-body p,
 .recycle-body p {
   margin: 7px 0;
-  font-size: 11px;
+  color: var(--resume-blue-dark);
   line-height: 1.45;
 }
 .xp-lead {
@@ -1488,7 +1494,7 @@ body[data-theme="portfolio"] .xp-desktop {
   display: block;
 }
 .xp-stat-grid strong {
-  color: #075bbc;
+  color: var(--resume-blue-dark);
   font-size: 18px;
 }
 .xp-stat-grid span {
@@ -1582,7 +1588,7 @@ body[data-theme="portfolio"] .xp-desktop {
   gap: 10px;
   padding: 8px 12px;
   color: #fff;
-  background: linear-gradient(#3d9af4, #1466ca);
+  background: linear-gradient(#3d9af4, var(--xp-blue));
   font-size: 15px;
 }
 .start-user span {
@@ -1717,7 +1723,7 @@ body[data-theme="portfolio"] .xp-desktop {
 }
 .resume-sheet h2 {
   margin: 0 0 6px;
-  color: #075bbc;
+  color: var(--resume-blue-dark);
   font: bold 18px Arial;
 }
 .resume-sheet p {
@@ -1728,7 +1734,7 @@ body[data-theme="portfolio"] .xp-desktop {
 }
 .resume-sheet hr {
   border: 0;
-  border-top: 1px solid #4472c4;
+  color: var(--resume-blue-dark);
   margin: 8px 0 10px;
 }
 .resume-sheet strong {
