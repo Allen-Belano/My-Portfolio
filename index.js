@@ -60,6 +60,7 @@ const xpDesktop = document.querySelector('.xp-desktop');
 const xpUserLogin = document.querySelector('.xp-user-login');
 const xpRestart = document.querySelector('.xp-restart');
 const contextMenu = document.querySelector('.xp-context-menu');
+let activeLauncher;
 
 xpUserLogin.addEventListener('click', () => {
 	xpDesktop.classList.add('is-logged-in');
@@ -72,13 +73,28 @@ xpRestart.addEventListener('click', () => {
 	setContextMenuOpen(false);
 });
 
-function showWindow(windowId) {
+function closeWindow(appWindow) {
+	appWindow.classList.add('is-closed');
+	appWindow.setAttribute('aria-hidden', 'true');
+	if (activeLauncher) activeLauncher.focus();
+}
+
+function minimizeWindow(appWindow) {
+	appWindow.classList.add('is-minimized');
+	appWindow.setAttribute('aria-hidden', 'true');
+}
+
+function showWindow(windowId, launcher) {
 	const appWindow = document.getElementById(windowId);
 	if (!appWindow) return;
+	if (launcher) activeLauncher = launcher;
 	appWindow.classList.remove('is-closed', 'is-minimized');
+	appWindow.setAttribute('aria-hidden', 'false');
 	focusWindow(appWindow);
 	startMenu.classList.remove('is-open');
 	startButton.setAttribute('aria-expanded', 'false');
+	startMenu.setAttribute('aria-hidden', 'true');
+	appWindow.focus();
 }
 
 function focusWindow(appWindow) {
@@ -92,11 +108,17 @@ document.querySelectorAll('.desktop-icon').forEach((launcher) => {
 		document.querySelectorAll('.desktop-icon').forEach((icon) => icon.classList.remove('is-selected'));
 		launcher.classList.add('is-selected');
 	});
-	launcher.addEventListener('dblclick', () => showWindow(launcher.dataset.window));
+	launcher.addEventListener('dblclick', () => showWindow(launcher.dataset.window, launcher));
+	launcher.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			showWindow(launcher.dataset.window, launcher);
+		}
+	});
 });
 
 document.querySelectorAll('.xp-start-menu [data-window]').forEach((launcher) => {
-	launcher.addEventListener('click', () => showWindow(launcher.dataset.window || launcher.dataset.taskWindow));
+	launcher.addEventListener('click', () => showWindow(launcher.dataset.window || launcher.dataset.taskWindow, launcher));
 });
 
 startButton.addEventListener('click', () => {
@@ -135,8 +157,8 @@ document.querySelectorAll('.xp-app-window').forEach((appWindow) => {
 	appWindow.addEventListener('click', (event) => {
 		focusWindow(appWindow);
 		const action = event.target.dataset.action;
-		if (action === 'close') appWindow.classList.add('is-closed');
-		if (action === 'minimize') appWindow.classList.add('is-minimized');
+		if (action === 'close') closeWindow(appWindow);
+		if (action === 'minimize') minimizeWindow(appWindow);
 		if (action === 'maximize') appWindow.classList.toggle('is-maximized');
 		if (action === 'power') document.body.dataset.theme = 'plain';
 	});
@@ -213,8 +235,8 @@ document.querySelectorAll('[data-task-window]').forEach((taskButton) => {
 	taskButton.addEventListener('click', () => {
 		const appWindow = document.getElementById(taskButton.dataset.taskWindow);
 		if (!appWindow) return;
-		if (appWindow.classList.contains('is-minimized')) showWindow(taskButton.dataset.taskWindow);
-		else appWindow.classList.toggle('is-minimized');
+		if (appWindow.classList.contains('is-minimized')) showWindow(taskButton.dataset.taskWindow, taskButton);
+		else minimizeWindow(appWindow);
 	});
 });
 
@@ -298,9 +320,13 @@ document.addEventListener('keydown', (event) => {
 	if (event.altKey && event.key === 'F4') {
 		const focusedWindow = [...document.querySelectorAll('.xp-app-window')].find((windowElement) => windowElement.classList.contains('is-focused'));
 		if (focusedWindow) {
-			focusedWindow.classList.add('is-closed');
+			closeWindow(focusedWindow);
 			event.preventDefault();
 		}
+	}
+	if (event.key === 'Escape') {
+		const focusedWindow = [...document.querySelectorAll('.xp-app-window')].find((windowElement) => windowElement.classList.contains('is-focused') && !windowElement.classList.contains('is-closed'));
+		if (focusedWindow) closeWindow(focusedWindow);
 	}
 });
 
