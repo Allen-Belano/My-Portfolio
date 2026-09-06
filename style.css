@@ -1224,6 +1224,9 @@ body[data-theme="portfolio"] .xp-desktop {
 .xp-app-window.is-minimized {
   display: none;
 }
+.xp-app-window.recycle-window:not(.is-closed):not(.is-minimized) {
+  display: block;
+}
 .xp-app-window.is-maximized {
   inset: 5% 3% 42px;
   width: auto;
@@ -1783,21 +1786,32 @@ body[data-theme="portfolio"] .xp-desktop {
   }
   .xp-app-window {
     min-width: 0;
+    top: 8px !important;
+    right: 8px;
+    bottom: 42px;
+    left: 8px !important;
+    display: flex;
+    width: auto !important;
+    height: auto;
+    max-height: none;
+    flex-direction: column;
   }
-  .about-window,
-  .resume-window,
-  .projects-window,
-  .contact-window,
-  .chat-window {
-    top: 10%;
-    left: 22%;
-    width: calc(78% - 10px);
+  .xp-app-window.is-maximized {
+    inset: 8px 8px 42px !important;
   }
-  .contact-window {
-    top: 48%;
+  .xp-window-body {
+    min-height: 0;
+    overflow-y: auto;
   }
-  .chat-window {
-    top: 20%;
+  .resume-body {
+    display: block;
+  }
+  .chat-body {
+    min-height: 0;
+  }
+  .chat-messages {
+    min-height: 120px;
+    max-height: none;
   }
   .xp-window-main {
     padding: 14px;
@@ -1813,12 +1827,26 @@ body[data-theme="portfolio"] .xp-desktop {
     padding: 6px;
   }
   .xp-start-menu {
-    width: min(365px, 92vw);
+    bottom: 42px;
+    width: min(365px, calc(100vw - 16px));
+  }
+  .start-columns {
+    grid-template-columns: 1fr;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
   }
   .xp-task-tabs {
     display: none;
   }
+  .xp-taskbar {
+    height: 42px;
+  }
+  .xp-start-button {
+    width: 82px;
+    font-size: 14px;
+  }
   .xp-tray {
+    gap: 5px;
     padding-right: 6px;
   }
 }
