@@ -1,0 +1,9 @@
+{
+  "name": "practice-space",
+  "private": true,
+  "scripts": {
+    "check": "npm run check:resume",
+    "check:resume": "node scripts/quality-checks.mjs",
+    "check:js": "node --check \"MY RESUME/index.js\" && node --check \"MY RESUME/theme.js\" && node --check \"MY RESUME/xp-desktop.js\" && node --check \"MY RESUME/chat.js\""
+  }
+}
