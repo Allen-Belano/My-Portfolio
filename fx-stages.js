@@ -52,7 +52,9 @@ export function initStages() {
 	const updateIndicator = () => {
 		const show = Boolean(current && current.hasAttribute('data-pin') && pinning.matches);
 		if (show) {
-			const [number, name] = current.querySelector('.pf-eyebrow').textContent.trim().split(' / ');
+			// data-text holds the label as written, since the label itself may be mid-decode (see fx-decode.js).
+			const eyebrow = current.querySelector('.pf-eyebrow');
+			const [number, name] = (eyebrow.dataset.text || eyebrow.textContent).trim().split(' / ');
 			num.textContent = `${number} /`;
 			label.textContent = name;
 		}
