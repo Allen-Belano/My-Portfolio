@@ -30,6 +30,19 @@ Each stage has a small mono label above a plain heading. The label is hidden fro
 
 A stage indicator in the bottom-left shows the current stage while a pinned stage is on screen.
 
+Across every stage:
+
+- **Smooth scrolling** (Lenis), for the portfolio view only; the resume keeps native scrolling.
+- **Screen layers:** film grain, a vignette, faint gridlines and corner brackets.
+- **HUD:** a scroll progress bar along the top, and a telemetry line with Manila time, Angono's coordinates and an altitude readout for scroll depth.
+- **Jump nav:** numbered stage links down the right edge, marking the current stage.
+- **Reticle:** a ring that trails the mouse and widens over links; the normal cursor stays.
+- **Decoding labels:** each mono stage label scrambles into place as it arrives.
+- **Reveals:** headings rise in word by word, the About paragraph lights up word by word, and stats, skill cards, education and contact links slide in.
+- **Parallax:** a large outline numeral drifts behind each stage, and the hero portrait drifts up.
+- **Cuts:** a scan line sweeps the screen as each new stage arrives.
+- **Scroll cue** at the bottom of the hero, until the first scroll.
+
 After about 5 seconds without scrolling, the assistant leaves its corner as a small rocket and wanders the page. A scroll, a click on it or keyboard focus sends it back, and it stays docked while the chat panel is open.
 
 **Below 860px:** no pinning, no starfield, the ticker stops and the orbit renders at a lower pixel ratio. The rocket stays docked.
@@ -52,6 +65,15 @@ After about 5 seconds without scrolling, the assistant leaves its corner as a sm
   - `fx-counters.js`, `fx-filters.js`, `fx-timeline.js`, `fx-tilt.js`, `fx-terminal.js` (press `/`)
   - `fx-bot.js`: the assistant and its chat panel
   - `fx-rocket.js`: the assistant roaming as a rocket
+  - `fx-smooth.js`: Lenis smooth scrolling
+  - `fx-hud.js`: the progress bar, telemetry clock and altitude, and the scroll cue
+  - `fx-jump.js`: the stage jump nav
+  - `fx-cursor.js`: the trailing reticle
+  - `fx-decode.js`: the decoding stage labels
+  - `fx-reveal.js`: the heading and group reveals
+  - `fx-highlight.js`: the About word highlight
+  - `fx-parallax.js`: the stage numerals and portrait drift
+  - `fx-cut.js`: the scan line between stages
 - `photo.jpg` is the profile image; `resume.pdf` is the downloadable resume.
 - `scripts/quality-checks.mjs` runs the site checks.
 
@@ -72,6 +94,7 @@ The assistant's answers are fixed text in `KNOWLEDGE` in `fx-bot.js`. They are w
 ## Libraries
 
 - GSAP 3.12.5 and ScrollTrigger, from cdnjs
+- Lenis 1.1.9, from jsDelivr, for smooth scrolling
 - three.js 0.160.0, from cdnjs, loaded only when the portfolio view opens
 - Inter, JetBrains Mono, DM Sans and Space Grotesk, from Google Fonts
 
