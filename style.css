@@ -3020,3 +3020,13 @@ body[data-theme="portfolio"] .xp-desktop {
   padding: 8px;
   border-top: 1px solid var(--cs-line);
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .xp-transition,
+  .xp-progress span,
+  .xp-desktop.is-refreshing .xp-desktop-icons {
+    animation: none;
+    transition: none;
+  }
+}
