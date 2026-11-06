@@ -1305,6 +1305,54 @@ body[data-theme="portfolio"] .portfolio-view {
   }
 }
 
+/* Contact: an oversized "Let's talk" link with a dot that pulses */
+.pf-talk {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 28px;
+  color: var(--pf-ink);
+  font: 700 clamp(56px, 10vw, 128px)/1 var(--display-font);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.pf-talk:hover,
+.pf-talk:focus-visible {
+  color: var(--pf-accent, #7aa7ff);
+}
+.pf-pulse {
+  position: absolute;
+  top: 0.12em;
+  right: -0.45em;
+  width: 0.2em;
+  height: 0.2em;
+  border-radius: 50%;
+  background: var(--pf-accent, #7aa7ff);
+}
+.pf-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--pf-accent, #7aa7ff);
+  border-radius: 50%;
+  animation: pf-pulse 2s ease-out infinite;
+}
+@keyframes pf-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-pulse::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* Education */
 .pf-edu {
   display: grid;
