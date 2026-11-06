@@ -2015,6 +2015,36 @@ body[data-mode="light"] .pf-grain {
 body[data-mode="light"] .pf-vignette {
   background: radial-gradient(ellipse at center, transparent 60%, rgba(23, 33, 58, 0.12) 100%);
 }
+.pf-corner {
+  z-index: 30;
+  width: 18px;
+  height: 18px;
+  border: 0 solid rgba(122, 167, 255, 0.55);
+}
+.pf-corner-tl {
+  top: 12px;
+  left: 12px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+.pf-corner-tr {
+  top: 12px;
+  right: 12px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+}
+.pf-corner-bl {
+  bottom: 12px;
+  left: 12px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+}
+.pf-corner-br {
+  right: 12px;
+  bottom: 12px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
 .pf-grid {
   inset: 0;
   z-index: -1;
