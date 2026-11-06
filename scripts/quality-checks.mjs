@@ -6,7 +6,7 @@ const root = process.cwd();
 const resumeDir = root;
 const htmlPath = path.join(resumeDir, 'index.html');
 const cssPath = path.join(resumeDir, 'style.css');
-const scripts = ['index.js', 'theme.js', 'xp-desktop.js', 'chat.js'];
+const scripts = ['index.js', 'cursor-swarm.js'];
 const failures = [];
 
 function fail(message) {
@@ -34,7 +34,7 @@ function checkHtml() {
   }
 
   for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
-    if (/src=["'](?:index|theme|xp-desktop|chat)\.js["']/i.test(match[1]) && !/\btype=["']module["']/i.test(match[1])) {
+    if (/src=["'](?:index|cursor-swarm)\.js["']/i.test(match[1]) && !/\btype=["']module["']/i.test(match[1])) {
       fail('Portfolio JavaScript entry must use type="module"');
     }
   }
