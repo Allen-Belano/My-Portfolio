@@ -2146,6 +2146,58 @@ body[data-mode="light"] .pf-vignette {
   }
 }
 
+/* Scroll cue at the bottom of the hero; fades out once the visitor scrolls (see fx-hud.js) */
+.pf-hero {
+  position: relative;
+}
+.pf-cue {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--pf-mute);
+  font: 500 11px/1 var(--pf-mono);
+  letter-spacing: 0.3em;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.pf-cue i {
+  display: block;
+  width: 1px;
+  height: 42px;
+  background: var(--pf-accent, #7aa7ff);
+  transform-origin: top center;
+  animation: pf-cue 1.8s ease-in-out infinite;
+}
+.pf-cue.is-hidden {
+  opacity: 0;
+}
+@keyframes pf-cue {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-cue i {
+    animation: none;
+  }
+}
+@media (max-width: 859px) {
+  .pf-cue {
+    display: none;
+  }
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
