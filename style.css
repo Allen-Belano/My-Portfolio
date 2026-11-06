@@ -2258,6 +2258,29 @@ body[data-mode="light"] .pf-vignette {
   display: inline-block;
 }
 
+/* Stage numerals: a large outline number behind each stage that drifts in parallax (see fx-parallax.js).
+   z-index -1 keeps it behind the stage content but above the gridlines, which come earlier in the page. */
+.pf-section {
+  position: relative;
+}
+.pf-numeral {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  z-index: -1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(122, 167, 255, 0.16);
+  font: 700 clamp(120px, 18vw, 260px)/1 var(--display-font);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 859px) {
+  .pf-numeral {
+    display: none;
+  }
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
