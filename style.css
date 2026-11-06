@@ -1344,3 +1344,70 @@ body:not([data-theme="portfolio"]) .resume-download {
   font-size: 14px;
   line-height: 1.7;
 }
+
+/* Terminal easter egg (press /) */
+.pf-term {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  z-index: 100;
+  width: min(640px, calc(100vw - 32px));
+  transform: translateX(-50%);
+  background: var(--pf-panel);
+  border: 1px solid var(--pf-accent);
+  color: var(--pf-ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.pf-term[hidden] {
+  display: none;
+}
+.pf-term-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--pf-line);
+  color: var(--pf-mute);
+  font-size: 11px;
+}
+.pf-term-close {
+  padding: 0 8px;
+  border: 1px solid var(--pf-line);
+  background: transparent;
+  color: var(--pf-mute);
+  font: inherit;
+  cursor: pointer;
+}
+.pf-term-close:hover,
+.pf-term-close:focus-visible {
+  border-color: var(--pf-accent);
+  color: var(--pf-accent);
+  outline: none;
+}
+.pf-term-log {
+  max-height: 180px;
+  padding: 10px 12px;
+  overflow-y: auto;
+}
+.pf-term-log p {
+  margin: 0 0 4px;
+  white-space: pre-wrap;
+}
+.pf-term-form {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--pf-line);
+  color: var(--pf-accent);
+}
+.pf-term-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--pf-ink);
+  font: inherit;
+  outline: none;
+}
