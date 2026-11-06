@@ -22,6 +22,7 @@ import { initHighlight } from './fx-highlight.js';
 import { initParallax } from './fx-parallax.js';
 import { initCut } from './fx-cut.js';
 import { initFilm, filmQuery } from './fx-film.js';
+import { initLean } from './fx-lean.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -141,6 +142,7 @@ if (!film) {
 }
 jump = initJump(smooth, film);
 if (film) jump.setCurrent(film.current);
+initLean(film);
 initCursor();
 initDecode({ observe: !film });
 // Switching between the film and the flowing page rebuilds the page, so crossing that line reloads it.
