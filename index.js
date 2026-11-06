@@ -3,6 +3,8 @@ import { initFilters } from './fx-filters.js';
 import { initTimeline } from './fx-timeline.js';
 import { initTilt } from './fx-tilt.js';
 import { initTerminal } from './fx-terminal.js';
+import { createSky } from './fx-sky.js';
+import { createOrb } from './fx-orb.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -11,6 +13,17 @@ const SWARM_COLORS = {
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
 let swarm = null;
+const sky = createSky(document.querySelector('.pf-sky'));
+const orb = createOrb(document.querySelector('[data-orb]'));
+
+function syncAmbient() {
+	const active = document.body.dataset.theme === 'portfolio';
+	const dark = document.body.dataset.mode !== 'light';
+	if (active && dark) sky.start();
+	else sky.stop();
+	if (active) orb.start();
+	else orb.stop();
+}
 
 function savedMode() {
 	try {
@@ -64,6 +77,7 @@ function setTheme(theme) {
 	});
 	if (isPortfolio) startSwarm();
 	else stopSwarm();
+	syncAmbient();
 }
 
 function setMode(mode) {
@@ -75,6 +89,8 @@ function setMode(mode) {
 	});
 	saveMode(mode);
 	if (swarm) swarm.setPalette(SWARM_COLORS[mode]);
+	orb.recolor();
+	syncAmbient();
 }
 
 themeToggles.forEach((toggle) => {

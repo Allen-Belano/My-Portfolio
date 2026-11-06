@@ -765,7 +765,7 @@ body[data-theme="portfolio"] {
   --pf-line: rgba(150, 170, 210, 0.14);
   --pf-line-strong: rgba(150, 170, 210, 0.3);
   --pf-ink: #e8edf7;
-  --pf-mute: #8d99b;
+  --pf-mute: #8b97ad;
   --pf-accent: #7aa7ff;
   --pf-accent-hi: #9cbcff;
   --pf-accent-2: #e9c46a;
@@ -1374,6 +1374,42 @@ body[data-theme="portfolio"] .portfolio-view {
   .portfolio-view .theme-toggle,
   .pf-nav nav a {
     transition: none;
+  }
+}
+
+/* Starfield and 3D orbit */
+.pf-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+body[data-mode="light"] .pf-sky {
+  opacity: 0;
+}
+.pf-orb {
+  position: absolute;
+  top: 50%;
+  right: -6%;
+  z-index: 0;
+  width: min(620px, 58vw);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.pf-orb canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 860px) {
+  .pf-orb {
+    right: -38%;
+    width: 120vw;
+    opacity: 0.3;
   }
 }
 
