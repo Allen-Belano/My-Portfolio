@@ -42,18 +42,24 @@ export function initFilm({ onScene } = {}) {
 		return Math.max(0, track.scrollWidth - visible);
 	};
 
+	// Every entrance names its end state (fromTo, never from): the trigger re-measures on refresh, and a from()
+	// tween would then take its already-rendered start state as its end, leaving the piece stuck hidden.
 	const addEntrance = (scene, at) => {
 		const heading = scene.querySelector('h2');
-		if (heading) timeline.from(splitWords(heading), { yPercent: 110, duration: 0.16, stagger: 0.03, ease: 'power3.out' }, at + 0.04);
+		if (heading) {
+			timeline.fromTo(splitWords(heading), { yPercent: 110 }, { yPercent: 0, duration: 0.16, stagger: 0.03, ease: 'power3.out' }, at + 0.04);
+		}
 
 		const talk = scene.querySelector('.pf-talk');
-		if (talk) timeline.from(talk, { scale: 0.85, autoAlpha: 0, duration: 0.14, ease: 'power3.out' }, at + 0.06);
+		if (talk) timeline.fromTo(talk, { scale: 0.85, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.14, ease: 'power3.out' }, at + 0.06);
 
 		const slides = scene.querySelectorAll(SLIDE);
-		if (slides.length) timeline.from(slides, { y: 26, autoAlpha: 0, duration: 0.14, stagger: 0.02, ease: 'power2.out' }, at + 0.1);
+		if (slides.length) {
+			timeline.fromTo(slides, { y: 26, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.14, stagger: 0.02, ease: 'power2.out' }, at + 0.1);
+		}
 
 		const cards = scene.querySelectorAll('.pf-card');
-		if (cards.length) timeline.from(cards, { autoAlpha: 0, duration: 0.12, stagger: 0.04 }, at + 0.1);
+		if (cards.length) timeline.fromTo(cards, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12, stagger: 0.04 }, at + 0.1);
 
 		// Experience: the line draws down and each role lights up in turn.
 		const line = scene.querySelector('.pf-timeline-line');
