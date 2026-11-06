@@ -1966,6 +1966,48 @@ body:not([data-theme="portfolio"]) .resume-download {
   top: 12px;
 }
 
+/* Screen layers: fixed, decorative, never take clicks. The grain and vignette sit over the content;
+   the gridlines sit behind it, over the starfield. */
+.pf-layers > span {
+  position: fixed;
+  pointer-events: none;
+}
+.pf-grain {
+  inset: -50%;
+  z-index: 30;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: pf-grain 0.9s steps(6) infinite;
+}
+body[data-mode="light"] .pf-grain {
+  opacity: 0.05;
+}
+@keyframes pf-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-4%, 3%);
+  }
+  40% {
+    transform: translate(3%, -5%);
+  }
+  60% {
+    transform: translate(-2%, 6%);
+  }
+  80% {
+    transform: translate(5%, -2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce), (max-width: 859px) {
+  .pf-grain {
+    animation: none;
+  }
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
