@@ -7,6 +7,7 @@ import { createSky } from './fx-sky.js';
 import { createOrb } from './fx-orb.js';
 import { initBot } from './fx-bot.js';
 import { initPeek } from './fx-peek.js';
+import { playIntro } from './fx-intro.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -86,6 +87,7 @@ function setTheme(theme) {
 	syncAmbient();
 	peek.setActive(!isPortfolio);
 	syncHash(isPortfolio);
+	if (isPortfolio) playIntro();
 }
 
 // Keeps #portfolio in the URL while the portfolio view is open, so the view can be shared as a direct link.
