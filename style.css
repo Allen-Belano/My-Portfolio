@@ -2800,3 +2800,16 @@ body[data-theme="portfolio"] .xp-desktop {
   opacity: 0.5;
   pointer-events: none;
 }
+
+/* Recycle bin */
+.recycle-body {
+  padding: 28px;
+  color: var(--cs-mute);
+  font-size: 12px;
+  text-align: center;
+}
+.recycle-large {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 40px;
+}
