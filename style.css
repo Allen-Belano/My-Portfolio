@@ -1221,3 +1221,24 @@ body[data-theme="portfolio"] .portfolio-view {
     transition: none;
   }
 }
+
+/* Resume download link (plain view) */
+body:not([data-theme="portfolio"]) .resume-download {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Printing: the resume only, no navigation or portfolio view */
+@media print {
+  .site-header,
+  .portfolio-view,
+  .resume-download {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+}
