@@ -601,5 +601,16 @@
         </form>
       </section>
     </div>
+    <!-- Keep the peeker last in the body: it is meant to be the last stop in the tab order. -->
+    <button class="peek" type="button" data-peek data-cs-ignore aria-label="Switch to portfolio design">
+      <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path class="peek-body" d="M14 26c0-12 7-20 18-20s18 8 18 20c0 4-2 6-5 6H19c-3 0-5-2-5-6z" />
+        <ellipse class="peek-eye" cx="25" cy="30" rx="6" ry="7" />
+        <ellipse class="peek-eye" cx="39" cy="30" rx="6" ry="7" />
+        <circle class="peek-pupil" cx="26" cy="31" r="2.5" />
+        <circle class="peek-pupil" cx="40" cy="31" r="2.5" />
+        <path class="peek-tentacle" d="M18 36c-4 6-2 12-6 18M26 38c-1 7 2 13 0 20M34 38c1 7-2 13 0 20M42 36c4 6 2 12 6 18" />
+      </svg>
+    </button>
   </body>
 </html>
