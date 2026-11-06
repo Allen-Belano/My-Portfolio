@@ -24,9 +24,17 @@ export function initStages() {
 		section.append(inner);
 	}
 
+	// data-pin="x" moves the project cards sideways; any other data-pin moves the stage content up.
 	const pinStage = (section) => {
 		const inner = section.querySelector('.pf-stage-inner');
-		const overflow = () => Math.max(0, inner.offsetHeight - section.clientHeight);
+		const horizontal = section.dataset.pin === 'x';
+		const track = horizontal ? section.querySelector('.pf-projects') : inner;
+		const axis = horizontal ? 'x' : 'y';
+		const overflow = () =>
+			horizontal
+				? Math.max(0, track.scrollWidth - section.clientWidth)
+				: Math.max(0, inner.offsetHeight - section.clientHeight);
+
 		section.classList.add('is-pinned');
 		ScrollTrigger.create({
 			trigger: section,
@@ -35,7 +43,7 @@ export function initStages() {
 			pin: true,
 			scrub: true,
 			invalidateOnRefresh: true,
-			animation: gsap.fromTo(inner, { y: 0 }, { y: () => -overflow(), ease: 'none' }),
+			animation: gsap.fromTo(track, { [axis]: 0 }, { [axis]: () => -overflow(), ease: 'none' }),
 		});
 	};
 
@@ -69,6 +77,10 @@ export function initStages() {
 	});
 
 	window.addEventListener('load', () => ScrollTrigger.refresh());
+	// A filter click changes how many project cards show, and with it the sideways distance.
+	document.querySelector('[data-filter-bar]')?.addEventListener('click', () => {
+		requestAnimationFrame(() => ScrollTrigger.refresh());
+	});
 
 	// The stages are measured while the portfolio view may still be hidden, so the caller refreshes once it shows.
 	return { refresh: () => ScrollTrigger.refresh() };
