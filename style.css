@@ -2146,10 +2146,8 @@ body[data-mode="light"] .pf-vignette {
   }
 }
 
-/* Scroll cue at the bottom of the hero; fades out once the visitor scrolls (see fx-hud.js) */
-.pf-hero {
-  position: relative;
-}
+/* Scroll cue at the bottom of the hero (which is already position: relative);
+   it fades out once the visitor scrolls (see fx-hud.js) */
 .pf-cue {
   position: absolute;
   bottom: 18px;
