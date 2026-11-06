@@ -2196,6 +2196,56 @@ body[data-mode="light"] .pf-vignette {
   }
 }
 
+/* Reticle: a ring that trails the pointer on desktop (see fx-cursor.js). The outer element moves;
+   the inner ring scales, so the two transforms never fight. The normal cursor stays visible. */
+.pf-reticle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 32;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.pf-reticle.is-on {
+  opacity: 1;
+}
+.pf-reticle i {
+  position: absolute;
+  top: -16px;
+  left: -16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(122, 167, 255, 0.6);
+  border-radius: 50%;
+  transition: transform 0.25s ease;
+}
+.pf-reticle i::before,
+.pf-reticle i::after {
+  content: "";
+  position: absolute;
+  background: rgba(122, 167, 255, 0.8);
+}
+.pf-reticle i::before {
+  top: 50%;
+  left: -6px;
+  width: 42px;
+  height: 1px;
+  transform: scaleX(0.35);
+}
+.pf-reticle i::after {
+  top: -6px;
+  left: 50%;
+  width: 1px;
+  height: 42px;
+  transform: scaleY(0.35);
+}
+.pf-reticle.is-hot i {
+  transform: scale(1.6);
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
