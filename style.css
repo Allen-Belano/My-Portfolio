@@ -1948,6 +1948,23 @@ body:not([data-theme="portfolio"]) .resume-download {
 }
 
 /* Printing: the resume only, no navigation or portfolio view */
+/* Skip link: hidden until a keyboard user focuses it, then shown at the top of the screen */
+.pf-skip {
+  position: fixed;
+  top: -60px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #0b1020;
+  background: var(--pf-accent, #7aa7ff);
+  font: 600 14px/1.2 var(--body-font);
+  text-decoration: none;
+}
+.pf-skip:focus-visible {
+  top: 12px;
+}
+
 /* Keyboard focus is always visible in the portfolio view, including controls without their own focus style */
 .portfolio-view a:focus-visible,
 .portfolio-view button:focus-visible,
