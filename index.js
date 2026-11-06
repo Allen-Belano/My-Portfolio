@@ -20,6 +20,7 @@ import { initDecode } from './fx-decode.js';
 import { initReveal } from './fx-reveal.js';
 import { initHighlight } from './fx-highlight.js';
 import { initParallax } from './fx-parallax.js';
+import { initCut } from './fx-cut.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -129,6 +130,7 @@ initTrajectory();
 initReveal();
 initHighlight();
 initParallax();
+initCut();
 initJump(smooth);
 initCursor();
 initDecode();
