@@ -1805,6 +1805,12 @@ body[data-theme="portfolio"] .peek {
     opacity: 1;
   }
 }
+/* Narrow screens: the resume text runs to the screen edges, so there is no outer strip to peek from. */
+@media (max-width: 720px) {
+  .peek {
+    display: none;
+  }
+}
 
 @media print {
   .site-header,
