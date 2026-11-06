@@ -1403,6 +1403,13 @@ body[data-mode="light"] .pf-sky {
   }
 }
 
+/* A pinned stage fills the screen and clips its content, which moves inside it (see fx-stages.js) */
+.pf-section.is-pinned {
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* Stage indicator: the pinned stage the visitor is on (see fx-stages.js) */
 .pf-progress {
   position: fixed;
