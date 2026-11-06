@@ -13,10 +13,13 @@ import { initStages } from './fx-stages.js';
 import { initTrajectory } from './fx-trajectory.js';
 import { initRocket } from './fx-rocket.js';
 import { createSmoothScroll } from './fx-smooth.js';
+import { initHud } from './fx-hud.js';
+import { initJump } from './fx-jump.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
 const smooth = createSmoothScroll();
+const hud = initHud();
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
 const peek = initPeek(() => {
@@ -38,6 +41,8 @@ function syncAmbient() {
 	// Smooth scrolling is for the portfolio view only; the resume keeps native scrolling.
 	if (active) smooth.start();
 	else smooth.stop();
+	if (active) hud.start();
+	else hud.stop();
 }
 
 function savedMode() {
@@ -116,6 +121,7 @@ initHeroName();
 const stages = initStages();
 // After the stage pinning, which wraps the stage content that holds the timeline.
 initTrajectory();
+initJump(smooth);
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
