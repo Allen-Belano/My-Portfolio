@@ -1304,6 +1304,11 @@ body[data-theme="portfolio"] .portfolio-view {
     animation: none;
   }
 }
+@media (max-width: 859px) {
+  .pf-ticker-track {
+    animation: none;
+  }
+}
 
 /* Contact: an oversized "Let's talk" link with a dot that pulses */
 .pf-talk {
