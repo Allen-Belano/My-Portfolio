@@ -62,6 +62,8 @@ function saveMode(mode) {
 
 function startSwarm() {
 	if (!SWARM_ENABLED || swarm || !window.CursorSwarm) return;
+	// The builder animates text into place as it scrolls, so it stays off with reduced motion.
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 	swarm = new window.CursorSwarm({
 		root: '.portfolio-view',
 		targets: SWARM_TARGETS,
