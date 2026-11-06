@@ -1403,6 +1403,23 @@ body[data-mode="light"] .pf-sky {
   }
 }
 
+/* Stage indicator: the pinned stage the visitor is on (see fx-stages.js) */
+.pf-progress {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+  color: var(--pf-accent, #7aa7ff);
+  font: 500 12px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+}
+.pf-progress[hidden] {
+  display: none;
+}
+
 /* The hero name grows from its left edge as the page scrolls (see fx-hero.js) */
 #pf-title {
   transform-origin: left center;
