@@ -2875,3 +2875,79 @@ body[data-theme="portfolio"] .xp-desktop {
   left: -3px;
   cursor: nwse-resize;
 }
+
+/* Taskbar (HUD strip) */
+.xp-taskbar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 8px;
+  background: rgba(10, 10, 10, 0.82);
+  border-top: 1px solid var(--cs-line-hi);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.xp-start-button {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px;
+  border: 0;
+  background: var(--cs-accent);
+  color: #050505;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+  cursor: pointer;
+}
+.xp-start-button:hover,
+.xp-start-button:focus-visible {
+  background: var(--cs-accent-hi);
+  outline: none;
+}
+.xp-task-tabs {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  min-width: 0;
+  overflow-x: auto;
+}
+.xp-task-tabs button {
+  flex: none;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--cs-line);
+  background: transparent;
+  color: var(--cs-mute);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.xp-task-tabs button:hover,
+.xp-task-tabs button:focus-visible {
+  border-color: var(--cs-accent);
+  color: var(--cs-ink);
+  outline: none;
+}
+.xp-tray {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 10px;
+  padding: 0 6px;
+  color: var(--cs-mute);
+  font-size: 11px;
+}
+.xp-tray time {
+  color: var(--cs-ink);
+  letter-spacing: 0.08em;
+}
