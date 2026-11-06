@@ -438,16 +438,6 @@ body:not([data-theme="portfolio"]) nav {
 body:not([data-theme="portfolio"]) nav a {
   display: none;
 }
-body:not([data-theme="portfolio"]) .theme-toggle {
-  border: 1px solid var(--resume-blue);
-  border-radius: 2px;
-  padding: 4px 8px;
-  color: var(--resume-blue);
-  background: #fff;
-  font:
-    10px Arial,
-    sans-serif;
-}
 body:not([data-theme="portfolio"]) .hero {
   display: block;
   padding: 0;
