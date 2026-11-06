@@ -38,9 +38,10 @@ export function createSmoothScroll() {
 		gsap.ticker.lagSmoothing(0);
 	}
 
-	// Glides to an element while Lenis runs, and jumps there natively when it does not.
+	// Glides to an element or a scroll position (px) while Lenis runs, and jumps there natively when it does not.
 	function scrollTo(target) {
 		if (lenis) lenis.scrollTo(target);
+		else if (typeof target === 'number') window.scrollTo(0, target);
 		else target.scrollIntoView();
 	}
 
