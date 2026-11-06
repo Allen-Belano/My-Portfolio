@@ -9,6 +9,7 @@ import { initBot } from './fx-bot.js';
 import { initPeek } from './fx-peek.js';
 import { playIntro } from './fx-intro.js';
 import { initHeroName } from './fx-hero.js';
+import { initStages } from './fx-stages.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -88,7 +89,10 @@ function setTheme(theme) {
 	syncAmbient();
 	peek.setActive(!isPortfolio);
 	syncHash(isPortfolio);
-	if (isPortfolio) playIntro();
+	if (isPortfolio) {
+		playIntro();
+		stages?.refresh();
+	}
 }
 
 // Keeps #portfolio in the URL while the portfolio view is open, so the view can be shared as a direct link.
@@ -131,6 +135,7 @@ initTilt();
 initTerminal();
 initBot();
 initHeroName();
+const stages = initStages();
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
