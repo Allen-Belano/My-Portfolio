@@ -6,6 +6,7 @@ import { initTerminal } from './fx-terminal.js';
 import { createSky } from './fx-sky.js';
 import { createOrb } from './fx-orb.js';
 import { initBot } from './fx-bot.js';
+import { initPeek } from './fx-peek.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -16,6 +17,10 @@ const modeToggles = document.querySelectorAll('.pf-mode');
 let swarm = null;
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
+const peek = initPeek(() => {
+	setTheme('portfolio');
+	window.scrollTo(0, 0);
+});
 
 function syncAmbient() {
 	const active = document.body.dataset.theme === 'portfolio';
@@ -79,6 +84,15 @@ function setTheme(theme) {
 	if (isPortfolio) startSwarm();
 	else stopSwarm();
 	syncAmbient();
+	peek.setActive(!isPortfolio);
+	syncHash(isPortfolio);
+}
+
+// Keeps #portfolio in the URL while the portfolio view is open, so the view can be shared as a direct link.
+function syncHash(isPortfolio) {
+	const onHash = location.hash === '#portfolio';
+	if (isPortfolio && !onHash) history.replaceState(null, '', '#portfolio');
+	if (!isPortfolio && onHash) history.replaceState(null, '', location.pathname + location.search);
 }
 
 function setMode(mode) {
@@ -114,3 +128,8 @@ initTilt();
 initTerminal();
 initBot();
 setMode(savedMode());
+if (location.hash === '#portfolio') setTheme('portfolio');
+else peek.setActive(true);
+window.addEventListener('hashchange', () => {
+	if (location.hash === '#portfolio') setTheme('portfolio');
+});
