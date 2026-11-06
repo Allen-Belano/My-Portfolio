@@ -11,6 +11,10 @@ import { playIntro } from './fx-intro.js';
 import { initHeroName } from './fx-hero.js';
 import { initStages } from './fx-stages.js';
 
+// Global switch for CursorSwarm: set to false to turn it off on every stage.
+const SWARM_ENABLED = true;
+// Only text inside stages marked data-swarm is built; pinned stages are left alone.
+const SWARM_TARGETS = '[data-swarm] :is(h1, h2, h3, p, li, a, strong, span, dt, dd)';
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
 	light: ['#2a5bd7', '#a87822'],
@@ -51,9 +55,10 @@ function saveMode(mode) {
 }
 
 function startSwarm() {
-	if (swarm || !window.CursorSwarm) return;
+	if (!SWARM_ENABLED || swarm || !window.CursorSwarm) return;
 	swarm = new window.CursorSwarm({
 		root: '.portfolio-view',
+		targets: SWARM_TARGETS,
 		cursors: 2,
 		colors: SWARM_COLORS[document.body.dataset.mode || 'dark'],
 		speed: 0.85,
