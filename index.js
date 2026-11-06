@@ -13,17 +13,8 @@ import { initStages } from './fx-stages.js';
 import { initTrajectory } from './fx-trajectory.js';
 import { initRocket } from './fx-rocket.js';
 
-// Global switch for CursorSwarm: set to false to turn it off on every stage.
-const SWARM_ENABLED = true;
-// Only text inside stages marked data-swarm is built; pinned stages are left alone.
-const SWARM_TARGETS = '[data-swarm] :is(h1, h2, h3, p, li, a, strong, span, dt, dd)';
-const SWARM_COLORS = {
-	dark: ['#7aa7ff', '#e9c46a'],
-	light: ['#2a5bd7', '#a87822'],
-};
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
-let swarm = null;
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
 const peek = initPeek(() => {
@@ -60,35 +51,6 @@ function saveMode(mode) {
 	}
 }
 
-function startSwarm() {
-	if (!SWARM_ENABLED || swarm || !window.CursorSwarm) return;
-	// The builder animates text into place as it scrolls, so it stays off with reduced motion.
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-	swarm = new window.CursorSwarm({
-		root: '.portfolio-view',
-		targets: SWARM_TARGETS,
-		cursors: 2,
-		colors: SWARM_COLORS[document.body.dataset.mode || 'dark'],
-		speed: 0.85,
-		maxSpeed: 1.4,
-		adaptiveSpeed: false,
-		typeDuration: 2.0,
-		hud: false,
-		labels: false,
-		guides: false,
-		marquee: false,
-		sparks: false,
-		copyPaste: false,
-		relocation: false,
-	}).init();
-}
-
-function stopSwarm() {
-	if (!swarm) return;
-	swarm.destroy();
-	swarm = null;
-}
-
 function setTheme(theme) {
 	document.body.dataset.theme = theme;
 	const isPortfolio = theme === 'portfolio';
@@ -97,8 +59,6 @@ function setTheme(theme) {
 		toggle.setAttribute('aria-label', isPortfolio ? 'Switch to plain resume' : 'Switch to portfolio design');
 		toggle.setAttribute('aria-pressed', String(isPortfolio));
 	});
-	if (isPortfolio) startSwarm();
-	else stopSwarm();
 	syncAmbient();
 	peek.setActive(!isPortfolio);
 	syncHash(isPortfolio);
@@ -123,7 +83,6 @@ function setMode(mode) {
 		toggle.setAttribute('aria-pressed', String(isLight));
 	});
 	saveMode(mode);
-	if (swarm) swarm.setPalette(SWARM_COLORS[mode]);
 	orb.recolor();
 	syncAmbient();
 }
