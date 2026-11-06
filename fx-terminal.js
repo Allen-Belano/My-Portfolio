@@ -35,7 +35,7 @@ export function initTerminal() {
 
 	document.addEventListener('keydown', (event) => {
 		if (document.body.dataset.theme !== 'portfolio') return;
-		const typing = event.target.closest('input, textarea, select, [contenteditable]');
+		const typing = event.target.closest?.('input, textarea, select, [contenteditable]');
 		if (event.key === '/' && !typing && panel.hidden) {
 			event.preventDefault();
 			open();
