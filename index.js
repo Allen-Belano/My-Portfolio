@@ -1,3 +1,4 @@
+import { initTilt } from './fx-tilt.js';
 import { initTimeline } from './fx-timeline.js';
 import { initFilters } from './fx-filters.js';
 import { initCounters } from './fx-counters.js';
@@ -91,3 +92,4 @@ setMode(savedMode());
 initCounters();
 initFilters();
 initTimeline();
+initTilt();

@@ -1298,3 +1298,11 @@ body:not([data-theme="portfolio"]) .resume-download {
 .pf-job.is-collapsed .pf-bullets {
   display: none;
 }
+
+/* Card tilt follows the pointer */
+.pf-card {
+  transition:
+    border-color 0.2s ease,
+    transform 0.25s ease;
+  will-change: transform;
+}
