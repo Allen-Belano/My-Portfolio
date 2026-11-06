@@ -84,7 +84,11 @@ export function initFilm({ onScene } = {}) {
 		const numeral = document.createElement('span');
 		numeral.className = 'pf-numeral';
 		numeral.setAttribute('aria-hidden', 'true');
-		numeral.textContent = scene.dataset.stage.padStart(2, '0');
+		// The film moves the numeral itself; the mouse drift moves the inner span (GSAP sets translate: none
+		// inline on what it animates, so the drift needs an element of its own).
+		const digits = document.createElement('span');
+		digits.textContent = scene.dataset.stage.padStart(2, '0');
+		numeral.append(digits);
 		scene.append(numeral);
 		timeline.fromTo(numeral, { y: 60 }, { y: -60, duration: 1 }, at);
 	};

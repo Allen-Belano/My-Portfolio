@@ -2346,7 +2346,8 @@ body[data-mode="light"] .pf-vignette {
 .pf-main.is-film > .pf-scene {
   translate: calc(var(--lean-x, 0) * 10px) calc(var(--lean-y, 0) * 8px);
 }
-.pf-main.is-film .pf-numeral {
+.pf-main.is-film .pf-numeral > span {
+  display: inline-block;
   translate: calc(var(--lean-x, 0) * -24px) calc(var(--lean-y, 0) * -16px);
 }
 /* Iris: the cut between scenes. A circle in the accent grows out of the scene's heading until it fills
