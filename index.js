@@ -5,8 +5,19 @@ function startSwarm() {
 	if (swarm || !window.CursorSwarm) return;
 	swarm = new window.CursorSwarm({
 		root: '.portfolio-view',
-		cursors: 3,
-		colors: ['#ff5e00', '#3be8ff', '#ffd23b'],
+		cursors: 2,
+		colors: ['#ff5e00', '#3be8ff'],
+		speed: 0.55,
+		maxSpeed: 1,
+		adaptiveSpeed: false,
+		typeDuration: 2.6,
+		hud: false,
+		labels: false,
+		guides: false,
+		marquee: false,
+		sparks: false,
+		copyPaste: false,
+		relocation: false,
 	}).init();
 }
 
