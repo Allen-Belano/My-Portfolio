@@ -8,6 +8,7 @@ import { createOrb } from './fx-orb.js';
 import { initBot } from './fx-bot.js';
 import { initPeek } from './fx-peek.js';
 import { playIntro } from './fx-intro.js';
+import { initHeroName } from './fx-hero.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -129,6 +130,7 @@ initTimeline();
 initTilt();
 initTerminal();
 initBot();
+initHeroName();
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
