@@ -2522,3 +2522,71 @@ body[data-theme="portfolio"] .xp-desktop {
   font-size: 12px;
   line-height: 1.6;
 }
+
+/* Resume window */
+.resume-body {
+  padding: 0;
+}
+.resume-sheet {
+  padding: 18px;
+  color: var(--cs-mute);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.resume-sheet h2 {
+  margin: 0;
+  font-size: 18px;
+}
+.resume-sheet > p {
+  margin: 4px 0 0;
+}
+.resume-sheet > strong {
+  display: block;
+  margin-top: 16px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--cs-line);
+  color: var(--cs-accent);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.resume-sheet hr {
+  margin: 14px 0 0;
+  border: 0;
+  border-top: 1px solid var(--cs-line);
+}
+.job-entry {
+  margin: 12px 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--cs-accent);
+}
+.job-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+.job-header h3 {
+  margin: 0;
+  color: var(--cs-ink);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.job-company {
+  margin: 2px 0 0;
+  color: var(--cs-ink);
+}
+.job-date {
+  color: var(--cs-cyan);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.job-details {
+  margin: 6px 0 0;
+  padding-left: 16px;
+}
+.job-details li {
+  margin: 4px 0;
+}
