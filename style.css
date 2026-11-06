@@ -759,8 +759,8 @@ body:not([data-theme="portfolio"]) .site-footer span {
 
 
 /* ===== Portfolio design (CursorSwarm style) ===== */
-.portfolio-view {
-  display: none;
+/* Dark is the default; body[data-mode="light"] swaps the tokens. */
+body[data-theme="portfolio"] {
   --pf-bg: #050505;
   --pf-panel: #0d0d0d;
   --pf-line: #222;
@@ -768,21 +768,39 @@ body:not([data-theme="portfolio"]) .site-footer span {
   --pf-mute: #a3a29d;
   --pf-accent: #ff5e00;
   --pf-accent-hi: #ff7a2e;
+  --pf-on-accent: #050505;
   --pf-cyan: #3be8ff;
-  --pf-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-body[data-theme="portfolio"] {
+  --pf-nav: rgba(5, 5, 5, 0.85);
   margin: 0;
-  background: #050505;
-  color: #f1efe9;
+  background: var(--pf-bg);
+  color: var(--pf-ink);
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   line-height: 1.6;
   overflow-x: hidden;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+body[data-theme="portfolio"][data-mode="light"] {
+  --pf-bg: #f6f4ef;
+  --pf-panel: #ffffff;
+  --pf-line: #d9d4c8;
+  --pf-ink: #141311;
+  --pf-mute: #5c574f;
+  --pf-accent: #c94400;
+  --pf-accent-hi: #a83800;
+  --pf-on-accent: #ffffff;
+  --pf-cyan: #00677d;
+  --pf-nav: rgba(246, 244, 239, 0.9);
 }
 body[data-theme="portfolio"] > .site-header,
 body[data-theme="portfolio"] > main,
 body[data-theme="portfolio"] > .site-footer {
   display: none;
+}
+.portfolio-view {
+  display: none;
+  color: var(--pf-ink);
 }
 body[data-theme="portfolio"] .portfolio-view {
   display: block;
@@ -790,7 +808,7 @@ body[data-theme="portfolio"] .portfolio-view {
 .portfolio-view h1,
 .portfolio-view h2,
 .portfolio-view h3 {
-  font-family: var(--pf-mono);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--pf-ink);
 }
 .portfolio-view a {
@@ -808,7 +826,7 @@ body[data-theme="portfolio"] .portfolio-view {
   justify-content: space-between;
   gap: 14px 24px;
   padding: 14px 24px;
-  background: rgba(5, 5, 5, 0.85);
+  background: var(--pf-nav);
   border-bottom: 1px solid var(--pf-line);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
@@ -840,7 +858,8 @@ body[data-theme="portfolio"] .portfolio-view {
   color: var(--pf-accent);
   outline: none;
 }
-.portfolio-view .theme-toggle {
+.portfolio-view .theme-toggle,
+.portfolio-view .pf-mode {
   padding: 8px 12px;
   border: 1px solid var(--pf-accent);
   background: transparent;
@@ -852,9 +871,11 @@ body[data-theme="portfolio"] .portfolio-view {
   cursor: pointer;
 }
 .portfolio-view .theme-toggle:hover,
-.portfolio-view .theme-toggle:focus-visible {
+.portfolio-view .theme-toggle:focus-visible,
+.portfolio-view .pf-mode:hover,
+.portfolio-view .pf-mode:focus-visible {
   background: var(--pf-accent);
-  color: #050505;
+  color: var(--pf-on-accent);
   outline: none;
 }
 
@@ -923,14 +944,14 @@ body[data-theme="portfolio"] .portfolio-view {
 .pf-btn-primary {
   border-color: var(--pf-accent);
   background: var(--pf-accent);
-  color: #050505;
+  color: var(--pf-on-accent);
   font-weight: 700;
 }
 .pf-btn-primary:hover,
 .pf-btn-primary:focus-visible {
   border-color: var(--pf-accent-hi);
   background: var(--pf-accent-hi);
-  color: #050505;
+  color: var(--pf-on-accent);
 }
 .pf-portrait {
   position: relative;

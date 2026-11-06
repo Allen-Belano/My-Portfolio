@@ -1,12 +1,44 @@
 const themeToggles = document.querySelectorAll('.theme-toggle');
+const modeToggles = document.querySelectorAll('.pf-mode');
+const PALETTES = {
+	dark: ['#ff5e00', '#3be8ff'],
+	light: ['#c94400', '#00677d'],
+};
 let swarm = null;
+
+function savedMode() {
+	try {
+		return localStorage.getItem('portfolio-mode') === 'light' ? 'light' : 'dark';
+	} catch {
+		return 'dark';
+	}
+}
+
+function saveMode(mode) {
+	try {
+		localStorage.setItem('portfolio-mode', mode);
+	} catch {
+		/* storage blocked: the choice simply isn't remembered */
+	}
+}
+
+function setMode(mode) {
+	document.body.dataset.mode = mode;
+	const isLight = mode === 'light';
+	modeToggles.forEach((toggle) => {
+		toggle.textContent = isLight ? 'Dark mode' : 'Light mode';
+		toggle.setAttribute('aria-pressed', String(isLight));
+	});
+	saveMode(mode);
+	if (swarm) swarm.setPalette(PALETTES[mode]);
+}
 
 function startSwarm() {
 	if (swarm || !window.CursorSwarm) return;
 	swarm = new window.CursorSwarm({
 		root: '.portfolio-view',
 		cursors: 2,
-		colors: ['#ff5e00', '#3be8ff'],
+		colors: PALETTES[document.body.dataset.mode || 'dark'],
 		speed: 0.55,
 		maxSpeed: 1,
 		adaptiveSpeed: false,
@@ -45,3 +77,11 @@ themeToggles.forEach((toggle) => {
 		window.scrollTo(0, 0);
 	});
 });
+
+modeToggles.forEach((toggle) => {
+	toggle.addEventListener('click', () => {
+		setMode(document.body.dataset.mode === 'light' ? 'dark' : 'light');
+	});
+});
+
+setMode(savedMode());
