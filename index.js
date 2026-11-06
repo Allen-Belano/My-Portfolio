@@ -19,6 +19,7 @@ import { initCursor } from './fx-cursor.js';
 import { initDecode } from './fx-decode.js';
 import { initReveal } from './fx-reveal.js';
 import { initHighlight } from './fx-highlight.js';
+import { initParallax } from './fx-parallax.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -127,6 +128,7 @@ const stages = initStages();
 initTrajectory();
 initReveal();
 initHighlight();
+initParallax();
 initJump(smooth);
 initCursor();
 initDecode();
