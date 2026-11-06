@@ -3092,3 +3092,8 @@ body[data-theme="portfolio"] .xp-desktop {
 .chat-form input:disabled {
   opacity: 0.5;
 }
+
+/* Taskbar stays hidden on the login screen */
+.xp-desktop:not(.is-logged-in) .xp-taskbar {
+  display: none;
+}
