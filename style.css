@@ -1179,12 +1179,14 @@ body[data-theme="portfolio"] .portfolio-view {
 }
 /* While the Projects stage is pinned, its cards form one row that moves sideways (see fx-stages.js).
    Cards are up to 560px wide so that, with two projects, the row is still wider than the stage. */
-.pf-section.is-pinned[data-pin="x"] .pf-projects {
+.pf-section.is-pinned[data-pin="x"] .pf-projects,
+.pf-main.is-film [data-pin="x"] .pf-projects {
   display: flex;
   width: max-content;
   padding-right: 24px;
 }
-.pf-section.is-pinned[data-pin="x"] .pf-card {
+.pf-section.is-pinned[data-pin="x"] .pf-card,
+.pf-main.is-film [data-pin="x"] .pf-card {
   flex: 0 0 min(560px, 70vw);
 }
 .pf-card {
