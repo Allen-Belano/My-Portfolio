@@ -1916,3 +1916,20 @@ body[data-theme="portfolio"] .xp-desktop {
     0 0 0 1px #fff,
     0 0 0 2px #174f9e;
 }
+
+/* ===== Portfolio desktop: CursorSwarm style =====
+   Near-black ground, one orange accent, monospace uppercase labels,
+   1px hairline borders, square corners, HUD-style taskbar. */
+:root {
+  --cs-bg: #050505;
+  --cs-panel: #0d0d0d;
+  --cs-raised: #141414;
+  --cs-line: #222;
+  --cs-line-hi: rgba(255, 255, 255, 0.12);
+  --cs-ink: #f1efe9;
+  --cs-mute: #a3a29d;
+  --cs-accent: #ff5e00;
+  --cs-accent-hi: #ff8a3d;
+  --cs-cyan: #3be8ff;
+  --cs-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
