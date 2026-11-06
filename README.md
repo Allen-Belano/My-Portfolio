@@ -68,6 +68,15 @@ Resume content appears in both views. Update both copies when changing:
 
 Keep claims and metrics consistent between the two views. The resume view is laid out for printing; the portfolio view is laid out for scrolling.
 
+The assistant's answers are fixed text in `KNOWLEDGE` in `fx-bot.js`. They are written in first person, as Allen, and labelled as automated, so change them only when Allen has approved the wording.
+
+## Libraries
+
+- GSAP 3.12.5 and ScrollTrigger, from cdnjs
+- three.js 0.160.0, from cdnjs, loaded only when the portfolio view opens
+- CursorSwarm, vendored in `cursor-swarm.js`
+- Inter, JetBrains Mono, DM Sans and Space Grotesk, from Google Fonts
+
 ## Quality checks
 
 ```
@@ -84,6 +93,8 @@ python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000.
+
+Browsers cache the module files, so after changing a `.js` file a plain reload can still run the old code. Use a hard refresh (Ctrl+F5).
 
 ## Deployment
 
