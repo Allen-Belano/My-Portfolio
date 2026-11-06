@@ -2308,6 +2308,38 @@ body[data-mode="light"] .pf-vignette {
   }
 }
 
+/* Film: on desktop the portfolio plays as one fixed stage, each stage a full-screen scene (see fx-film.js).
+   Scenes are stacked and shown one at a time; one that is taller than the screen is scaled to fit.
+   Without the film (phones, reduced motion, no script) none of this applies and the page scrolls as written. */
+.pf-main.is-film {
+  position: relative;
+  height: 100vh;
+  max-width: none;
+  padding: 0;
+  overflow: hidden;
+}
+.pf-main.is-film > .pf-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: min(1120px, 100%);
+  min-height: 0;
+  margin: 0 auto;
+  padding: 92px clamp(48px, 5vw, 72px) 64px;
+  border: 0;
+  transform-origin: center;
+}
+.pf-main.is-film > .pf-hero {
+  display: grid;
+}
+.pf-main.is-film .pf-stats {
+  margin-top: 36px;
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
