@@ -1306,3 +1306,41 @@ body:not([data-theme="portfolio"]) .resume-download {
     transform 0.25s ease;
   will-change: transform;
 }
+
+/* Quick questions */
+.pf-ask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pf-ask-chips button {
+  padding: 8px 12px;
+  border: 1px solid var(--pf-line);
+  background: transparent;
+  color: var(--pf-mute);
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.pf-ask-chips button:hover,
+.pf-ask-chips button:focus-visible {
+  border-color: var(--pf-accent);
+  color: var(--pf-accent);
+  outline: none;
+}
+.pf-ask-chips button[aria-pressed="true"] {
+  border-color: var(--pf-accent);
+  color: var(--pf-accent);
+}
+.pf-section > .pf-ask-output {
+  max-width: 68ch;
+  min-height: 3.5em;
+  margin: 22px 0 0;
+  padding: 14px 16px;
+  border-left: 2px solid var(--pf-accent);
+  background: var(--pf-panel);
+  color: var(--pf-ink);
+  font-size: 14px;
+  line-height: 1.7;
+}

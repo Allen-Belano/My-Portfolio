@@ -1,3 +1,4 @@
+import { initAsk } from './fx-ask.js';
 import { initTilt } from './fx-tilt.js';
 import { initTimeline } from './fx-timeline.js';
 import { initFilters } from './fx-filters.js';
@@ -93,3 +94,4 @@ initCounters();
 initFilters();
 initTimeline();
 initTilt();
+initAsk();
