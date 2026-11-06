@@ -388,5 +388,179 @@
     <footer class="site-footer section-shell">
       <span>Allen Joshua O. Belano</span><span>&copy; 2026</span>
     </footer>
+    <div class="portfolio-view">
+      <header class="pf-nav">
+        <a class="pf-brand" href="#pf-top" aria-label="Allen Belano home">AB<span>.</span></a>
+        <nav aria-label="Portfolio navigation">
+          <a href="#pf-about">About</a>
+          <a href="#pf-experience">Experience</a>
+          <a href="#pf-projects">Projects</a>
+          <a href="#pf-skills">Skills</a>
+          <a href="#pf-contact">Contact</a>
+          <button class="theme-toggle" type="button" aria-pressed="true">Plain resume</button>
+        </nav>
+      </header>
+      <main id="pf-top" class="pf-main">
+        <section class="pf-hero" aria-labelledby="pf-title">
+          <div class="pf-hero-copy">
+            <p class="pf-eyebrow">Full-stack developer / Rizal, Philippines</p>
+            <h1 id="pf-title">Allen Joshua O. Belano</h1>
+            <p class="pf-lead">
+              I build, test and support enterprise systems used by 4,000 to 5,000 employees, working across frontend, backend, QA and UI/UX.
+            </p>
+            <div class="pf-actions">
+              <a class="pf-btn pf-btn-primary" href="#pf-projects">See my work</a>
+              <a class="pf-btn" href="mailto:belanoallen@gmail.com">Email me</a>
+            </div>
+          </div>
+          <figure class="pf-portrait">
+            <img src="photo.jpg" alt="Allen Joshua O. Belano wearing glasses and a suit" />
+            <figcaption>BS Information Technology, Rizal Technological University</figcaption>
+          </figure>
+        </section>
+
+        <section class="pf-stats" aria-label="Highlights">
+          <div><strong>4,000-5,000</strong><span>employees supported</span></div>
+          <div><strong>500+</strong><span>tickets handled daily</span></div>
+          <div><strong>Top 5</strong><span>CodeKada Hackathon 2026</span></div>
+        </section>
+
+        <section id="pf-about" class="pf-section" aria-labelledby="pf-about-title">
+          <p class="pf-eyebrow">01 / Who I am</p>
+          <h2 id="pf-about-title">About</h2>
+          <p>
+            BS Information Technology student contributing production-level work across full-stack development, system reliability, testing, and UI/UX design. I like building things that hold up in daily use, from the code to the screen people actually touch.
+          </p>
+        </section>
+
+        <section id="pf-experience" class="pf-section" aria-labelledby="pf-experience-title">
+          <p class="pf-eyebrow">02 / Experience</p>
+          <h2 id="pf-experience-title">Work history</h2>
+          <article class="pf-job">
+            <div class="pf-job-meta">
+              <span class="pf-date">June 2026 - Present</span>
+              <span class="pf-company">DevKada (Non-Profit Community Organization)</span>
+            </div>
+            <div>
+              <h3>Full Stack Developer</h3>
+              <ul class="pf-bullets">
+                <li>Lead frontend development and product design for DevKada's official website, from wireframes through implementation.</li>
+                <li>Build the interface with React, Next.js, Tailwind CSS and Flutter, with PostgreSQL, Firebase and Supabase integrations.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="pf-job">
+            <div class="pf-job-meta">
+              <span class="pf-date">Feb 2026 - Present</span>
+              <span class="pf-company">AWS Student Builder Group - Alpha</span>
+            </div>
+            <div>
+              <h3>Operations &amp; Program Committee Member</h3>
+              <ul class="pf-bullets">
+                <li>Delivered 5 club events, including the "AI Governance" flagship at AWS's BGC office, which drew 150 attendees.</li>
+                <li>Organized 4 online workshops averaging 50 attendees each.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="pf-job">
+            <div class="pf-job-meta">
+              <span class="pf-date">Feb 2026 - May 2026</span>
+              <span class="pf-company">Viva International Food &amp; Restaurants, Inc. - Ortigas Center, Pasig City</span>
+            </div>
+            <div>
+              <h3>Software Engineer &amp; IT Support Intern</h3>
+              <ul class="pf-bullets">
+                <li>Developed, tested and maintained an employee Training System used by 4,000-5,000 employees and a Ticketing Management System processing 500+ tickets daily.</li>
+                <li>Built and enhanced the company-wide PBRF (POS Button Request Form) platform used across brands and stores.</li>
+                <li>Performed system testing and debugging, and provided on-site IT support for the head office and 4-5 branches.</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+
+        <section id="pf-projects" class="pf-section" aria-labelledby="pf-projects-title">
+          <p class="pf-eyebrow">03 / Selected projects</p>
+          <h2 id="pf-projects-title">Projects</h2>
+          <div class="pf-projects">
+            <article class="pf-card">
+              <div class="pf-card-top"><span>01</span><span>Hackathon / 2026</span></div>
+              <h3>VeriFi-PH</h3>
+              <p>Social post verification with AI-powered credibility scoring and fact-check context. Placed Top 5 out of 105 projects at the CodeKada Hackathon 2026.</p>
+              <ul class="pf-bullets">
+                <li>Combined Cloudflare Workers AI, engagement signals and fact-checking APIs to produce credibility scores.</li>
+              </ul>
+              <ul class="pf-tags">
+                <li>React + Vite</li>
+                <li>Node + Express</li>
+                <li>Cloudflare Workers AI</li>
+                <li>Socket.IO</li>
+              </ul>
+            </article>
+            <article class="pf-card">
+              <div class="pf-card-top"><span>02</span><span>In development</span></div>
+              <h3>SA/AN Commuter Guide</h3>
+              <p>Community-powered route finder with transit alerts and Navvia, an AI commuter assistant.</p>
+              <ul class="pf-bullets">
+                <li>Built a background scheduler that syncs and classifies RSS transit news feeds.</li>
+              </ul>
+              <ul class="pf-tags">
+                <li>React</li>
+                <li>PostgreSQL</li>
+                <li>JWT</li>
+                <li>React Leaflet</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="pf-skills" class="pf-section" aria-labelledby="pf-skills-title">
+          <p class="pf-eyebrow">04 / Toolkit</p>
+          <h2 id="pf-skills-title">Skills</h2>
+          <div class="pf-skills">
+            <div><h3>Programming</h3><p>HTML, CSS, JavaScript, Python, Java, C++, PHP</p></div>
+            <div><h3>Frameworks &amp; Libraries</h3><p>React.js, Next.js, Node.js, Express.js, Bootstrap, Tailwind CSS, React Router, React Leaflet, Flutter</p></div>
+            <div><h3>Databases &amp; Backend</h3><p>MySQL, PostgreSQL, MongoDB, Firebase, Supabase</p></div>
+            <div><h3>AI Tools &amp; APIs</h3><p>OpenAI (ChatGPT) API, Claude, Cloudflare Workers AI, Prompt Engineering</p></div>
+            <div><h3>Tools &amp; Software</h3><p>VS Code, Figma, Cisco Packet Tracer, MS Office, Google Workspace, Canva, Godot</p></div>
+            <div><h3>Core Skills</h3><p>System Development, System Testing &amp; QA, Data Analysis, IT Support, UI/UX Design, REST APIs, Technical Documentation</p></div>
+          </div>
+        </section>
+
+        <section id="pf-education" class="pf-section" aria-labelledby="pf-education-title">
+          <p class="pf-eyebrow">05 / Education &amp; credentials</p>
+          <h2 id="pf-education-title">Education</h2>
+          <div class="pf-edu">
+            <div>
+              <h3>BS Information Technology <span class="pf-date">2023 - 2027</span></h3>
+              <p>Rizal Technological University, Boni Campus. Current GWA 1.34 (Magna Cum Laude range).</p>
+            </div>
+            <div>
+              <h3>Senior High School <span class="pf-date">2021 - 2023</span></h3>
+              <p>Angono National High School, Angono, Rizal. Graduated with Honors.</p>
+            </div>
+          </div>
+          <ul class="pf-bullets pf-certs">
+            <li><strong>DataCamp</strong>: ChatGPT, Python (Intro/Intermediate), Data Science Scholarship</li>
+            <li><strong>Udemy</strong>: Full-Stack Web Dev Bootcamp</li>
+            <li><strong>Tech Academy</strong>: CCNA Prep</li>
+            <li><strong>Palo Alto Networks</strong>: Certified Cybersecurity Practitioner</li>
+          </ul>
+        </section>
+
+        <section id="pf-contact" class="pf-section" aria-labelledby="pf-contact-title">
+          <p class="pf-eyebrow">06 / Contact</p>
+          <h2 id="pf-contact-title">Let's build something dependable.</h2>
+          <p>Have a project, collaboration, or question? Reach out.</p>
+          <div class="pf-actions">
+            <a class="pf-btn pf-btn-primary" href="mailto:belanoallen@gmail.com">belanoallen@gmail.com</a>
+            <a class="pf-btn" href="tel:+639501753538">+63 950 175 3538</a>
+            <a class="pf-btn" href="https://linkedin.com/in/allen-belano" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </section>
+      </main>
+      <footer class="pf-footer">
+        <span>Allen Joshua O. Belano</span><span>&copy; 2026</span>
+      </footer>
+    </div>
   </body>
 </html>
