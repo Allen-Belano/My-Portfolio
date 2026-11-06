@@ -17,6 +17,8 @@ The resume has no visible button for it. A small creature peeks in from a screen
 
 Each stage has a small mono label above a plain heading. The label is hidden from screen readers, so they read only the heading.
 
+**On desktop the portfolio plays as a film** (`fx-film.js`): one fixed stage, each stage a full-screen scene with the same scroll length. A scene's entrance plays as it arrives (the heading rises, its pieces slide in, the timeline draws, the Projects row slides), it rests, and an iris in the accent colour grows out of its heading to cut to the next. Scrolling back plays it in reverse, the jump nav glides to each scene's resting frame, and Tab only reaches the scene on screen. Scenes drift slightly with the mouse. On phones and with reduced motion the page flows instead, with the pinned stages and scroll reveals in the table below; crossing between the two reloads the page.
+
 | Stage | Label | Section | Scroll effect |
 |---|---|---|---|
 | 0 | SIGNAL ACQUIRED | Intro | About 1.5s each time the view opens; a click or key press skips it |
@@ -65,6 +67,8 @@ After about 5 seconds without scrolling, the assistant leaves its corner as a sm
   - `fx-counters.js`, `fx-filters.js`, `fx-timeline.js`, `fx-tilt.js`, `fx-terminal.js` (press `/`)
   - `fx-bot.js`: the assistant and its chat panel
   - `fx-rocket.js`: the assistant roaming as a rocket
+  - `fx-film.js`: the desktop film (scenes, entrances, iris cuts)
+  - `fx-lean.js`: the film's mouse drift
   - `fx-smooth.js`: Lenis smooth scrolling
   - `fx-hud.js`: the progress bar, telemetry clock and altitude, and the scroll cue
   - `fx-jump.js`: the stage jump nav
