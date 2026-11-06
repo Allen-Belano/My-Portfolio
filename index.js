@@ -5,6 +5,7 @@ import { initTilt } from './fx-tilt.js';
 import { initTerminal } from './fx-terminal.js';
 import { createSky } from './fx-sky.js';
 import { createOrb } from './fx-orb.js';
+import { initBot } from './fx-bot.js';
 
 const SWARM_COLORS = {
 	dark: ['#7aa7ff', '#e9c46a'],
@@ -111,4 +112,5 @@ initFilters();
 initTimeline();
 initTilt();
 initTerminal();
+initBot();
 setMode(savedMode());
