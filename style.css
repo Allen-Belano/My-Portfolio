@@ -2088,6 +2088,64 @@ body[data-mode="light"] .pf-vignette {
   }
 }
 
+/* Jump nav: numbered stage markers down the right edge (see fx-jump.js). The stage name slides out on hover
+   or focus; it is always part of the link text, so screen readers hear it either way. */
+.pf-jump {
+  position: fixed;
+  top: 50%;
+  right: 22px;
+  z-index: 25;
+  display: grid;
+  gap: 6px;
+  transform: translateY(-50%);
+}
+.pf-jump a {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 10px;
+  min-height: 24px;
+  color: var(--pf-mute);
+  font: 500 11px/1 var(--pf-mono);
+  letter-spacing: 0.14em;
+  text-decoration: none;
+}
+.pf-jump-num::after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  margin-left: 8px;
+  vertical-align: middle;
+  background: currentColor;
+  transform: scaleX(0.5);
+  transform-origin: right center;
+  transition: transform 0.3s ease;
+}
+.pf-jump-name {
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+.pf-jump a:hover .pf-jump-name,
+.pf-jump a:focus-visible .pf-jump-name {
+  opacity: 1;
+  transform: none;
+}
+.pf-jump a[aria-current="true"] {
+  color: var(--pf-accent, #7aa7ff);
+}
+.pf-jump a[aria-current="true"] .pf-jump-num::after {
+  transform: scaleX(1.6);
+}
+@media (max-width: 859px) {
+  .pf-jump {
+    display: none;
+  }
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
