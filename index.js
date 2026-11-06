@@ -21,6 +21,7 @@ import { initReveal } from './fx-reveal.js';
 import { initHighlight } from './fx-highlight.js';
 import { initParallax } from './fx-parallax.js';
 import { initCut } from './fx-cut.js';
+import { initFilm, filmQuery } from './fx-film.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -80,7 +81,7 @@ function setTheme(theme) {
 	syncHash(isPortfolio);
 	if (isPortfolio) {
 		playIntro();
-		stages?.refresh();
+		motion?.refresh();
 	}
 }
 
@@ -124,16 +125,26 @@ initTerminal();
 initBot();
 initRocket();
 initHeroName();
-const stages = initStages();
-// After the stage pinning, which wraps the stage content that holds the timeline.
-initTrajectory();
-initReveal();
-initHighlight();
-initParallax();
-initCut();
-initJump(smooth);
+// On desktop the portfolio plays as a film, which handles the stages, reveals, numerals and cuts itself.
+// Elsewhere (phones, reduced motion) the page flows, with pinned stages and scroll reveals.
+let jump = null;
+const film = initFilm({ onScene: (index) => jump?.setCurrent(index) });
+let motion = film;
+if (!film) {
+	motion = initStages();
+	// After the stage pinning, which wraps the stage content that holds the timeline.
+	initTrajectory();
+	initReveal();
+	initHighlight();
+	initParallax();
+	initCut();
+}
+jump = initJump(smooth, film);
+if (film) jump.setCurrent(film.current);
 initCursor();
-initDecode();
+initDecode({ observe: !film });
+// Switching between the film and the flowing page rebuilds the page, so crossing that line reloads it.
+filmQuery.addEventListener('change', () => location.reload());
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
