@@ -2054,6 +2054,40 @@ body[data-mode="light"] .pf-vignette {
   background-size: 120px 120px;
 }
 
+/* HUD: scroll progress along the top and a telemetry line at the bottom centre (see fx-hud.js) */
+.pf-hud-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 31;
+  height: 2px;
+  background: var(--pf-accent, #7aa7ff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.pf-hud-telemetry {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  z-index: 30;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  color: var(--pf-mute);
+  font: 500 11px/1 var(--pf-mono);
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+@media (max-width: 859px) {
+  .pf-hud-telemetry {
+    display: none;
+  }
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
