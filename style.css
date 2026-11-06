@@ -1716,6 +1716,58 @@ body[data-mode="light"] .pf-bot {
   }
 }
 
+/* Rocket: the probe while it roams the page (see fx-rocket.js). Hidden while docked. */
+.pf-rocket-svg {
+  display: none;
+  width: 40px;
+  height: 40px;
+  overflow: visible;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+.pf-rocket-body,
+.pf-rocket-fin {
+  fill: var(--pf-accent, #7aa7ff);
+}
+.pf-rocket-fin {
+  opacity: 0.85;
+}
+.pf-rocket-window {
+  fill: var(--pf-bg, #060a14);
+}
+.pf-rocket-flame {
+  fill: #ffb703;
+  transform-origin: 50% 0;
+  animation: pf-flame 0.14s ease-in-out infinite alternate;
+}
+@keyframes pf-flame {
+  from {
+    transform: scaleY(0.7);
+  }
+  to {
+    transform: scaleY(1.2);
+  }
+}
+.pf-probe.is-roaming {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 91;
+  margin: 0;
+  will-change: transform;
+}
+.pf-probe.is-roaming .pf-probe-svg,
+.pf-probe.is-roaming .pf-probe-tip {
+  display: none;
+}
+.pf-probe.is-roaming .pf-rocket-svg {
+  display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-rocket-flame {
+    animation: none;
+  }
+}
+
 .pf-bot-panel {
   position: absolute;
   right: 0;
