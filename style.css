@@ -2951,3 +2951,72 @@ body[data-theme="portfolio"] .xp-desktop {
   color: var(--cs-ink);
   letter-spacing: 0.08em;
 }
+
+/* Start menu */
+.xp-start-menu {
+  position: absolute;
+  bottom: 54px;
+  left: 8px;
+  z-index: 60;
+  display: none;
+  width: 300px;
+  background: var(--cs-panel);
+  border: 1px solid var(--cs-line);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+.xp-start-menu.is-open {
+  display: block;
+}
+.start-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--cs-line);
+}
+.start-user span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--cs-accent);
+  color: #050505;
+  font-weight: 700;
+}
+.start-user strong {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.start-columns {
+  padding: 6px;
+}
+.start-columns > div > button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  color: var(--cs-ink);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.start-columns > div > button:hover,
+.start-columns > div > button:focus-visible {
+  background: var(--cs-accent);
+  color: #050505;
+  outline: none;
+}
+.start-columns b {
+  color: var(--cs-mute);
+  font-weight: 400;
+}
+.start-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  border-top: 1px solid var(--cs-line);
+}
