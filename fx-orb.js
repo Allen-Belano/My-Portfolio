@@ -74,7 +74,9 @@ export function createOrb(container) {
 		THREE = await loadThree();
 		const size = container.clientWidth || 1;
 		renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-		renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+		// Phones get a lower pixel ratio: the orbit is decorative and the GPU work adds up on small screens.
+		const maxRatio = window.matchMedia('(min-width: 860px)').matches ? 2 : 1;
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxRatio));
 		renderer.setSize(size, size);
 		container.append(renderer.domElement);
 
