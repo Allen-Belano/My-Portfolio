@@ -1948,6 +1948,13 @@ body:not([data-theme="portfolio"]) .resume-download {
 }
 
 /* Printing: the resume only, no navigation or portfolio view */
+/* The orbit is wider than a phone screen by design, so clip sideways overflow
+   instead of letting the whole page scroll sideways. */
+.portfolio-view {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 /* Intro: a short signal-acquired sequence each time the portfolio view opens (see fx-intro.js) */
 .pf-intro {
   position: fixed;
