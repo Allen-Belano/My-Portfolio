@@ -2629,3 +2629,40 @@ body[data-theme="portfolio"] .xp-desktop {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Contact window */
+.contact-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px;
+}
+.contact-body h2 {
+  margin-bottom: 4px;
+}
+.contact-body > div > p {
+  margin: 0 0 10px;
+  color: var(--cs-mute);
+  font-size: 12px;
+}
+.contact-body > div > a {
+  display: block;
+  padding: 6px 0;
+  color: var(--cs-ink);
+  font-size: 12px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--cs-line);
+}
+.contact-body > div > a:hover {
+  color: var(--cs-accent);
+}
+.contact-avatar {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  background: var(--cs-accent);
+  color: #050505;
+  font-weight: 700;
+}
