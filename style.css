@@ -3030,3 +3030,45 @@ body[data-theme="portfolio"] .xp-desktop {
     transition: none;
   }
 }
+
+/* Small screens */
+@media (max-width: 720px) {
+  .xp-desktop-icons {
+    top: 12px;
+    left: 8px;
+    gap: 4px;
+  }
+  .desktop-icon {
+    width: 70px;
+    font-size: 8px;
+  }
+  .xp-app-window {
+    top: 8px !important;
+    right: 8px;
+    bottom: 60px;
+    left: 8px !important;
+    width: auto !important;
+    min-width: 0;
+    max-height: none;
+  }
+  .xp-app-window.is-maximized {
+    inset: 8px 8px 60px;
+  }
+  .about-body {
+    grid-template-columns: 1fr;
+  }
+  .about-body aside {
+    border-right: 0;
+    border-bottom: 1px solid var(--cs-line);
+  }
+  .xp-stat-grid {
+    grid-template-columns: 1fr;
+  }
+  .xp-task-tabs button {
+    font-size: 9px;
+    padding: 0 8px;
+  }
+  .xp-start-menu {
+    width: calc(100vw - 16px);
+  }
+}
