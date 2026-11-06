@@ -1,3 +1,4 @@
+import { initCounters } from './fx-counters.js';
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
 const PALETTES = {
@@ -85,3 +86,4 @@ modeToggles.forEach((toggle) => {
 });
 
 setMode(savedMode());
+initCounters();
