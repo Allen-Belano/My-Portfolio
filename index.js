@@ -10,6 +10,7 @@ import { initPeek } from './fx-peek.js';
 import { playIntro } from './fx-intro.js';
 import { initHeroName } from './fx-hero.js';
 import { initStages } from './fx-stages.js';
+import { initTrajectory } from './fx-trajectory.js';
 
 // Global switch for CursorSwarm: set to false to turn it off on every stage.
 const SWARM_ENABLED = true;
@@ -141,6 +142,8 @@ initTerminal();
 initBot();
 initHeroName();
 const stages = initStages();
+// After the stage pinning, which wraps the stage content that holds the timeline.
+initTrajectory();
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
