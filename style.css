@@ -2440,6 +2440,29 @@ body[data-mode="light"] .pf-intro {
   font: 600 clamp(1.1rem, 3vw, 1.6rem)/1.2 "JetBrains Mono", monospace;
   letter-spacing: 0.12em;
 }
+.pf-intro-load {
+  display: grid;
+  grid-template-columns: 220px auto;
+  align-items: center;
+  gap: 14px;
+  color: #7aa7ff;
+  font: 500 11px/1 "JetBrains Mono", monospace;
+  letter-spacing: 0.14em;
+}
+.pf-intro-bar {
+  height: 2px;
+  background: #7aa7ff;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.pf-intro.is-playing .pf-intro-bar {
+  animation: pf-intro-bar 1.2s cubic-bezier(0.6, 0, 0.3, 1) both;
+}
+@keyframes pf-intro-bar {
+  to {
+    transform: scaleX(1);
+  }
+}
 .pf-intro.is-playing .pf-intro-ring {
   animation: pf-intro-ring 1.5s ease-out both;
 }
