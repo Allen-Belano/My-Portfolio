@@ -2341,6 +2341,14 @@ body[data-mode="light"] .pf-vignette {
 .pf-main.is-film .pf-stats {
   margin-top: 36px;
 }
+/* Drift: while the mouse moves, each scene leans toward it and its numeral drifts the other way (see fx-lean.js).
+   The translate property adds to the film's own transforms instead of replacing them. */
+.pf-main.is-film > .pf-scene {
+  translate: calc(var(--lean-x, 0) * 10px) calc(var(--lean-y, 0) * 8px);
+}
+.pf-main.is-film .pf-numeral {
+  translate: calc(var(--lean-x, 0) * -24px) calc(var(--lean-y, 0) * -16px);
+}
 /* Iris: the cut between scenes. A circle in the accent grows out of the scene's heading until it fills
    the screen, then fades to open on the next scene. Transform and opacity only. */
 .pf-iris {
