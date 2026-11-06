@@ -2341,6 +2341,16 @@ body[data-mode="light"] .pf-vignette {
 .pf-main.is-film .pf-stats {
   margin-top: 36px;
 }
+/* Iris: the cut between scenes. A circle in the accent grows out of the scene's heading until it fills
+   the screen, then fades to open on the next scene. Transform and opacity only. */
+.pf-iris {
+  position: absolute;
+  z-index: 5;
+  border-radius: 50%;
+  background: var(--pf-accent, #7aa7ff);
+  transform: scale(0);
+  pointer-events: none;
+}
 
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
