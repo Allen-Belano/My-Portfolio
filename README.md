@@ -28,19 +28,19 @@ Each stage has a small mono label above a plain heading. The label is hidden fro
 | 6 | CREDENTIALS | Education | None |
 | 7 | TRANSMISSION | Contact | An oversized "Let's talk" link with a pulsing dot |
 
-The text builder runs only on stages marked `data-swarm` (1, 2, 6 and 7). A stage indicator in the bottom-left shows the current stage while a pinned stage is on screen.
+A stage indicator in the bottom-left shows the current stage while a pinned stage is on screen.
 
 After about 5 seconds without scrolling, the assistant leaves its corner as a small rocket and wanders the page. A scroll, a click on it or keyboard focus sends it back, and it stays docked while the chat panel is open.
 
 **Below 860px:** no pinning, no starfield, the ticker stops and the orbit renders at a lower pixel ratio. The rocket stays docked.
 
-**With reduced motion on:** the intro is skipped, stages are not pinned, scroll effects and the text builder are off, the rocket stays docked and the peeker fades in instead of sliding.
+**With reduced motion on:** the intro is skipped, stages are not pinned, scroll effects are off, the rocket stays docked and the peeker fades in instead of sliding.
 
 ## Structure
 
 - `index.html` holds both views. Each portfolio stage is a `<section data-stage="N">`.
 - `style.css` holds the resume styles, the portfolio styles and the responsive and print rules.
-- `index.js` is the module entry point. It switches views and starts the effects. `SWARM_ENABLED` at the top turns the text builder off everywhere.
+- `index.js` is the module entry point. It switches views and starts the effects.
 - One module per effect:
   - `fx-peek.js`: the peeking creature on the resume
   - `fx-intro.js`: the stage 0 intro
@@ -52,7 +52,6 @@ After about 5 seconds without scrolling, the assistant leaves its corner as a sm
   - `fx-counters.js`, `fx-filters.js`, `fx-timeline.js`, `fx-tilt.js`, `fx-terminal.js` (press `/`)
   - `fx-bot.js`: the assistant and its chat panel
   - `fx-rocket.js`: the assistant roaming as a rocket
-- `cursor-swarm.js` is the vendored CursorSwarm text builder (MIT).
 - `photo.jpg` is the profile image; `resume.pdf` is the downloadable resume.
 - `scripts/quality-checks.mjs` runs the site checks.
 
@@ -74,7 +73,6 @@ The assistant's answers are fixed text in `KNOWLEDGE` in `fx-bot.js`. They are w
 
 - GSAP 3.12.5 and ScrollTrigger, from cdnjs
 - three.js 0.160.0, from cdnjs, loaded only when the portfolio view opens
-- CursorSwarm, vendored in `cursor-swarm.js`
 - Inter, JetBrains Mono, DM Sans and Space Grotesk, from Google Fonts
 
 ## Quality checks
