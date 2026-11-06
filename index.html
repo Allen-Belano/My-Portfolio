@@ -484,8 +484,14 @@
         <section id="pf-projects" class="pf-section" aria-labelledby="pf-projects-title">
           <p class="pf-eyebrow">03 / Selected projects</p>
           <h2 id="pf-projects-title">Projects</h2>
+          <div class="pf-filters" data-filter-bar role="group" aria-label="Filter projects and skills">
+            <button type="button" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" data-filter="frontend" aria-pressed="false">Frontend</button>
+            <button type="button" data-filter="backend" aria-pressed="false">Backend</button>
+            <button type="button" data-filter="ai" aria-pressed="false">AI</button>
+          </div>
           <div class="pf-projects">
-            <article class="pf-card">
+            <article class="pf-card" data-tags="frontend backend ai">
               <div class="pf-card-top"><span>01</span><span>Hackathon / 2026</span></div>
               <h3>VeriFi-PH</h3>
               <p>Social post verification with AI-powered credibility scoring and fact-check context. Placed Top 5 out of 105 projects at the CodeKada Hackathon 2026.</p>
@@ -499,7 +505,7 @@
                 <li>Socket.IO</li>
               </ul>
             </article>
-            <article class="pf-card">
+            <article class="pf-card" data-tags="frontend backend">
               <div class="pf-card-top"><span>02</span><span>In development</span></div>
               <h3>SA/AN Commuter Guide</h3>
               <p>Community-powered route finder with transit alerts and Navvia, an AI commuter assistant.</p>
@@ -520,12 +526,12 @@
           <p class="pf-eyebrow">04 / Toolkit</p>
           <h2 id="pf-skills-title">Skills</h2>
           <div class="pf-skills">
-            <div><h3>Programming</h3><p>HTML, CSS, JavaScript, Python, Java, C++, PHP</p></div>
-            <div><h3>Frameworks &amp; Libraries</h3><p>React.js, Next.js, Node.js, Express.js, Bootstrap, Tailwind CSS, React Router, React Leaflet, Flutter</p></div>
-            <div><h3>Databases &amp; Backend</h3><p>MySQL, PostgreSQL, MongoDB, Firebase, Supabase</p></div>
-            <div><h3>AI Tools &amp; APIs</h3><p>OpenAI (ChatGPT) API, Claude, Cloudflare Workers AI, Prompt Engineering</p></div>
-            <div><h3>Tools &amp; Software</h3><p>VS Code, Figma, Cisco Packet Tracer, MS Office, Google Workspace, Canva, Godot</p></div>
-            <div><h3>Core Skills</h3><p>System Development, System Testing &amp; QA, Data Analysis, IT Support, UI/UX Design, REST APIs, Technical Documentation</p></div>
+            <div data-tags="frontend backend"><h3>Programming</h3><p>HTML, CSS, JavaScript, Python, Java, C++, PHP</p></div>
+            <div data-tags="frontend backend"><h3>Frameworks &amp; Libraries</h3><p>React.js, Next.js, Node.js, Express.js, Bootstrap, Tailwind CSS, React Router, React Leaflet, Flutter</p></div>
+            <div data-tags="backend"><h3>Databases &amp; Backend</h3><p>MySQL, PostgreSQL, MongoDB, Firebase, Supabase</p></div>
+            <div data-tags="ai"><h3>AI Tools &amp; APIs</h3><p>OpenAI (ChatGPT) API, Claude, Cloudflare Workers AI, Prompt Engineering</p></div>
+            <div data-tags="tools"><h3>Tools &amp; Software</h3><p>VS Code, Figma, Cisco Packet Tracer, MS Office, Google Workspace, Canva, Godot</p></div>
+            <div data-tags="frontend backend ai"><h3>Core Skills</h3><p>System Development, System Testing &amp; QA, Data Analysis, IT Support, UI/UX Design, REST APIs, Technical Documentation</p></div>
           </div>
         </section>
 

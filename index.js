@@ -1,3 +1,4 @@
+import { initFilters } from './fx-filters.js';
 import { initCounters } from './fx-counters.js';
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -87,3 +88,4 @@ modeToggles.forEach((toggle) => {
 
 setMode(savedMode());
 initCounters();
+initFilters();
