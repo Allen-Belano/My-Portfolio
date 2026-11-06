@@ -2590,3 +2590,42 @@ body[data-theme="portfolio"] .xp-desktop {
 .job-details li {
   margin: 4px 0;
 }
+
+/* Projects window */
+.project-body {
+  display: grid;
+}
+.project-body article {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--cs-line);
+}
+.project-body article:last-child {
+  border-bottom: 0;
+}
+.xp-project-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--cs-line);
+  font-size: 16px;
+}
+.project-body article h2 {
+  margin: 0 0 4px;
+  font-size: 13px;
+}
+.project-body article p {
+  margin: 0 0 6px;
+  color: var(--cs-mute);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.project-body article small {
+  color: var(--cs-cyan);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
