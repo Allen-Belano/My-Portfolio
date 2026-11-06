@@ -16,6 +16,7 @@ import { createSmoothScroll } from './fx-smooth.js';
 import { initHud } from './fx-hud.js';
 import { initJump } from './fx-jump.js';
 import { initCursor } from './fx-cursor.js';
+import { initDecode } from './fx-decode.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -124,6 +125,7 @@ const stages = initStages();
 initTrajectory();
 initJump(smooth);
 initCursor();
+initDecode();
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else peek.setActive(true);
