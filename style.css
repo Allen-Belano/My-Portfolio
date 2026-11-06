@@ -1768,7 +1768,8 @@ body[data-mode="light"] .pf-bot {
   display: block;
 }
 @media (prefers-reduced-motion: reduce) {
-  .pf-rocket-flame {
+  .pf-rocket-flame,
+  .pf-probe-svg {
     animation: none;
   }
 }
