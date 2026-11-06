@@ -2274,3 +2274,39 @@ body[data-theme="portfolio"] .xp-desktop {
 .desktop-icon.is-selected .desktop-icon-art {
   border-color: var(--cs-accent);
 }
+
+/* Context menu */
+.xp-context-menu {
+  position: fixed;
+  z-index: 30;
+  display: none;
+  width: 196px;
+  padding: 4px;
+  background: var(--cs-panel);
+  border: 1px solid var(--cs-line);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+.xp-context-menu.is-open {
+  display: block;
+}
+.xp-context-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  background: none;
+  color: var(--cs-ink);
+  text-align: left;
+}
+.xp-context-menu button:hover,
+.xp-context-menu button:focus-visible {
+  background: var(--cs-accent);
+  color: #050505;
+  outline: none;
+}
+.xp-context-menu hr,
+.start-columns hr {
+  margin: 4px 0;
+  border: 0;
+  border-top: 1px solid var(--cs-line);
+}
