@@ -2246,6 +2246,18 @@ body[data-mode="light"] .pf-vignette {
   transform: scale(1.6);
 }
 
+/* Heading reveal: each word rises out of its own mask (see fx-reveal.js). Without the script the
+   heading is plain text and none of this applies. */
+.pf-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+.pf-word > span {
+  display: inline-block;
+}
+
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
 html.lenis body {
