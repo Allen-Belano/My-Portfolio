@@ -2007,6 +2007,22 @@ body[data-mode="light"] .pf-grain {
     animation: none;
   }
 }
+.pf-vignette {
+  inset: 0;
+  z-index: 29;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(2, 4, 10, 0.55) 100%);
+}
+body[data-mode="light"] .pf-vignette {
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(23, 33, 58, 0.12) 100%);
+}
+.pf-grid {
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(122, 167, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(122, 167, 255, 0.05) 1px, transparent 1px);
+  background-size: 120px 120px;
+}
 
 /* Smooth scrolling (see fx-smooth.js): the rules Lenis expects while it drives the page */
 html.lenis,
