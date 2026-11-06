@@ -34,7 +34,7 @@ function checkHtml() {
   }
 
   for (const match of html.matchAll(/<script\b([^>]*)>/gi)) {
-    if (/src=["'](?:index|cursor-swarm)\.js["']/i.test(match[1]) && !/\btype=["']module["']/i.test(match[1])) {
+    if (/src=["'](?:index)\.js["']/i.test(match[1]) && !/\btype=["']module["']/i.test(match[1])) {
       fail('Portfolio JavaScript entry must use type="module"');
     }
   }
