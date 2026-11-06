@@ -2455,3 +2455,70 @@ body[data-theme="portfolio"] .xp-desktop {
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
+
+/* About window */
+.about-body {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+}
+.about-body aside {
+  padding: 14px;
+  border-right: 1px solid var(--cs-line);
+}
+.xp-task-heading {
+  margin: 14px 0 6px;
+  color: var(--cs-accent);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.xp-task-heading:first-child {
+  margin-top: 0;
+}
+.about-body aside a {
+  display: block;
+  padding: 6px 0;
+  color: var(--cs-mute);
+  font-size: 12px;
+  text-decoration: none;
+}
+.about-body aside a:hover {
+  color: var(--cs-accent);
+}
+.xp-window-main {
+  padding: 18px;
+}
+.xp-lead {
+  margin: 0;
+  color: var(--cs-mute);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.xp-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 16px 0;
+}
+.xp-stat-grid div {
+  padding: 10px;
+  border: 1px solid var(--cs-line);
+  background: var(--cs-bg);
+}
+.xp-stat-grid strong {
+  display: block;
+  color: var(--cs-accent);
+  font-size: 16px;
+}
+.xp-stat-grid span {
+  color: var(--cs-mute);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.xp-window-main > p:not(.xp-lead) {
+  margin: 0;
+  color: var(--cs-mute);
+  font-size: 12px;
+  line-height: 1.6;
+}
