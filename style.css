@@ -1275,3 +1275,26 @@ body:not([data-theme="portfolio"]) .resume-download {
 .is-filtered-out {
   display: none !important;
 }
+
+/* Experience timeline toggles */
+.pf-job-toggle {
+  justify-self: start;
+  margin-top: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--pf-line);
+  background: transparent;
+  color: var(--pf-accent);
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.pf-job-toggle:hover,
+.pf-job-toggle:focus-visible {
+  border-color: var(--pf-accent);
+  outline: none;
+}
+.pf-job.is-collapsed .pf-bullets {
+  display: none;
+}

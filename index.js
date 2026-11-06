@@ -1,3 +1,4 @@
+import { initTimeline } from './fx-timeline.js';
 import { initFilters } from './fx-filters.js';
 import { initCounters } from './fx-counters.js';
 const themeToggles = document.querySelectorAll('.theme-toggle');
@@ -89,3 +90,4 @@ modeToggles.forEach((toggle) => {
 setMode(savedMode());
 initCounters();
 initFilters();
+initTimeline();
