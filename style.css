@@ -1403,6 +1403,11 @@ body[data-mode="light"] .pf-sky {
   }
 }
 
+/* The hero name grows from its left edge as the page scrolls (see fx-hero.js) */
+#pf-title {
+  transform-origin: left center;
+}
+
 /* Assistant: a small probe that opens a chat panel */
 .pf-bot {
   display: none;
