@@ -2231,3 +2231,46 @@ body[data-theme="portfolio"] .xp-desktop {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+/* Desktop icons */
+.xp-desktop-icons {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: grid;
+  gap: 6px;
+}
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 92px;
+  padding: 8px 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--cs-ink);
+  text-align: center;
+  font-size: 10px;
+}
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  border-color: var(--cs-line-hi);
+  outline: none;
+}
+.desktop-icon.is-selected {
+  border-color: var(--cs-accent);
+  background: rgba(255, 94, 0, 0.12);
+}
+.desktop-icon-art {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--cs-line);
+  background: var(--cs-panel);
+  font-size: 20px;
+}
+.desktop-icon.is-selected .desktop-icon-art {
+  border-color: var(--cs-accent);
+}
