@@ -1,4 +1,5 @@
 const INTRO_MS = 1500;
+const LOAD_MS = 1200; // matches the load bar's fill in the CSS
 let stopCurrent = null;
 
 // Plays the stage 0 intro each time the portfolio view opens. A click or key press skips it,
@@ -12,8 +13,11 @@ export function playIntro() {
 	stopCurrent?.();
 
 	let timer = null;
+	let counter = null;
+	const percent = intro.querySelector('[data-intro-pct]');
 	const finish = () => {
 		clearTimeout(timer);
+		clearInterval(counter);
 		intro.removeEventListener('click', finish);
 		window.removeEventListener('keydown', finish);
 		intro.classList.remove('is-playing');
@@ -29,4 +33,15 @@ export function playIntro() {
 	window.addEventListener('keydown', finish);
 	timer = setTimeout(finish, INTRO_MS);
 	stopCurrent = finish;
+
+	// The percentage counts up beside the load bar, easing out like the bar does.
+	const start = performance.now();
+	const count = () => {
+		const t = Math.min(1, (performance.now() - start) / LOAD_MS);
+		const eased = 1 - Math.pow(1 - t, 3);
+		if (percent) percent.textContent = `${String(Math.round(eased * 100)).padStart(3, '0')}%`;
+		if (t >= 1) clearInterval(counter);
+	};
+	count();
+	counter = setInterval(count, 40);
 }
