@@ -1,15 +1,15 @@
-import { initTerminal } from './fx-terminal.js';
-import { initAsk } from './fx-ask.js';
-import { initTilt } from './fx-tilt.js';
-import { initTimeline } from './fx-timeline.js';
-import { initFilters } from './fx-filters.js';
 import { initCounters } from './fx-counters.js';
+import { initFilters } from './fx-filters.js';
+import { initTimeline } from './fx-timeline.js';
+import { initTilt } from './fx-tilt.js';
+import { initTerminal } from './fx-terminal.js';
+
+const SWARM_COLORS = {
+	dark: ['#7aa7ff', '#e9c46a'],
+	light: ['#2a5bd7', '#a87822'],
+};
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
-const PALETTES = {
-	dark: ['#ff5e00', '#3be8ff'],
-	light: ['#c94400', '#00677d'],
-};
 let swarm = null;
 
 function savedMode() {
@@ -28,23 +28,12 @@ function saveMode(mode) {
 	}
 }
 
-function setMode(mode) {
-	document.body.dataset.mode = mode;
-	const isLight = mode === 'light';
-	modeToggles.forEach((toggle) => {
-		toggle.textContent = isLight ? 'Dark mode' : 'Light mode';
-		toggle.setAttribute('aria-pressed', String(isLight));
-	});
-	saveMode(mode);
-	if (swarm) swarm.setPalette(PALETTES[mode]);
-}
-
 function startSwarm() {
 	if (swarm || !window.CursorSwarm) return;
 	swarm = new window.CursorSwarm({
 		root: '.portfolio-view',
 		cursors: 2,
-		colors: PALETTES[document.body.dataset.mode || 'dark'],
+		colors: SWARM_COLORS[document.body.dataset.mode || 'dark'],
 		speed: 0.85,
 		maxSpeed: 1.4,
 		adaptiveSpeed: false,
@@ -77,6 +66,17 @@ function setTheme(theme) {
 	else stopSwarm();
 }
 
+function setMode(mode) {
+	document.body.dataset.mode = mode;
+	const isLight = mode === 'light';
+	modeToggles.forEach((toggle) => {
+		toggle.textContent = isLight ? 'Dark mode' : 'Light mode';
+		toggle.setAttribute('aria-pressed', String(isLight));
+	});
+	saveMode(mode);
+	if (swarm) swarm.setPalette(SWARM_COLORS[mode]);
+}
+
 themeToggles.forEach((toggle) => {
 	toggle.addEventListener('click', () => {
 		setTheme(document.body.dataset.theme === 'portfolio' ? 'plain' : 'portfolio');
@@ -90,10 +90,9 @@ modeToggles.forEach((toggle) => {
 	});
 });
 
-setMode(savedMode());
 initCounters();
 initFilters();
 initTimeline();
 initTilt();
-initAsk();
 initTerminal();
+setMode(savedMode());
