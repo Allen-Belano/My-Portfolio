@@ -33,6 +33,8 @@ export function createOrb(container) {
 	let raf = 0;
 	let running = false;
 	let building = null;
+	let drift = 0;
+	let scrollTurn = 0;
 
 	const colorize = () => {
 		if (!core) return;
@@ -52,10 +54,16 @@ export function createOrb(container) {
 		pointer.y = event.clientY / window.innerHeight - 0.5;
 	};
 
+	// The orbit keeps its slow drift and also turns with the page: about one radian per 625px of scroll.
+	const onScroll = () => {
+		scrollTurn = window.scrollY * 0.0016;
+	};
+
 	const frame = () => {
 		if (!running) return;
 		const group = scene.userData.group;
-		group.rotation.y += 0.0014;
+		drift += 0.0014;
+		group.rotation.y = drift + scrollTurn;
 		group.rotation.x += (pointer.y * 0.3 - group.rotation.x) * 0.04;
 		group.rotation.z += (pointer.x * 0.15 - group.rotation.z) * 0.04;
 		renderer.render(scene, camera);
@@ -113,13 +121,19 @@ export function createOrb(container) {
 			await building;
 			if (!running || !renderer) return;
 			window.addEventListener('pointermove', onPointer, { passive: true });
-			if (reduceMotion) renderer.render(scene, camera);
-			else raf = requestAnimationFrame(frame);
+			if (reduceMotion) {
+				renderer.render(scene, camera);
+				return;
+			}
+			onScroll();
+			window.addEventListener('scroll', onScroll, { passive: true });
+			raf = requestAnimationFrame(frame);
 		},
 		stop() {
 			running = false;
 			cancelAnimationFrame(raf);
 			window.removeEventListener('pointermove', onPointer);
+			window.removeEventListener('scroll', onScroll);
 		},
 		recolor: colorize,
 	};
