@@ -1,4 +1,4 @@
-const THREE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r160/three.min.js';
+const THREE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js';
 let loading = null;
 
 function loadThree() {
