@@ -1060,6 +1060,53 @@ body[data-theme="portfolio"] .portfolio-view {
   align-content: start;
   gap: 6px;
 }
+/* Timeline: a line runs down the roles and each role's marker lights up as the line reaches it
+   (see fx-trajectory.js). Roles are dimmed only once the animation is set up, so without it the list reads in full. */
+.pf-jobs {
+  position: relative;
+  padding-left: 36px;
+}
+.pf-timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--pf-accent, #7aa7ff);
+  transform-origin: top center;
+}
+.pf-job {
+  position: relative;
+}
+.pf-job::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: -40px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--pf-line);
+  border-radius: 50%;
+  background: var(--pf-bg);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+.pf-job:first-of-type::before {
+  top: 8px;
+}
+.pf-jobs:not(.is-animated) .pf-job::before,
+.pf-job.is-lit::before {
+  border-color: var(--pf-accent, #7aa7ff);
+  background: var(--pf-accent, #7aa7ff);
+}
+.pf-jobs.is-animated .pf-job {
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+.pf-jobs.is-animated .pf-job.is-lit {
+  opacity: 1;
+}
 .pf-company {
   color: var(--pf-mute);
   font-size: 14px;
