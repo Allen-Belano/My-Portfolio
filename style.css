@@ -1207,6 +1207,47 @@ body[data-theme="portfolio"] .portfolio-view {
   line-height: 1.65;
 }
 
+/* Oversized outline ticker of skill words behind the grid. The track holds the words twice,
+   so moving it by half its width loops seamlessly. */
+.pf-skills-stage {
+  position: relative;
+}
+.pf-skills > div {
+  position: relative;
+  z-index: 1;
+}
+.pf-ticker {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  overflow: hidden;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.pf-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: pf-ticker 48s linear infinite;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(122, 167, 255, 0.35);
+  font: 700 clamp(64px, 11vw, 150px)/1.05 var(--display-font);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+@keyframes pf-ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-ticker-track {
+    animation: none;
+  }
+}
+
 /* Education */
 .pf-edu {
   display: grid;
