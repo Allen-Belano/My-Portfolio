@@ -17,6 +17,7 @@ import { initHud } from './fx-hud.js';
 import { initJump } from './fx-jump.js';
 import { initCursor } from './fx-cursor.js';
 import { initDecode } from './fx-decode.js';
+import { initReveal } from './fx-reveal.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -123,6 +124,7 @@ initHeroName();
 const stages = initStages();
 // After the stage pinning, which wraps the stage content that holds the timeline.
 initTrajectory();
+initReveal();
 initJump(smooth);
 initCursor();
 initDecode();
