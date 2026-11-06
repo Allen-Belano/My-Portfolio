@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 
@@ -6,7 +6,8 @@ const root = process.cwd();
 const resumeDir = root;
 const htmlPath = path.join(resumeDir, 'index.html');
 const cssPath = path.join(resumeDir, 'style.css');
-const scripts = ['index.js', 'cursor-swarm.js'];
+// The entry point plus every effect module (fx-*.js).
+const scripts = ['index.js', ...readdirSync(root).filter((file) => /^fx-[\w-]+\.js$/.test(file)).sort()];
 const failures = [];
 
 function fail(message) {

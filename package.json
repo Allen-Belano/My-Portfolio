@@ -4,6 +4,6 @@
   "scripts": {
     "check": "npm run check:site",
     "check:site": "node scripts/quality-checks.mjs",
-    "check:js": "node --check index.js && node --check cursor-swarm.js"
+    "check:js": "node --check index.js"
   }
 }
