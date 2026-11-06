@@ -2045,3 +2045,53 @@ body[data-theme="portfolio"] .xp-desktop {
 .xp-actions[hidden] {
   display: none;
 }
+
+/* ----- Shared controls ----- */
+.xp-desktop button,
+.xp-transition button {
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.xp-cancel,
+.xp-continue,
+.xp-start-menu button,
+.xp-window-toolbar span {
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+.xp-cancel,
+.xp-restart,
+.start-footer button {
+  padding: 8px 14px;
+  border: 1px solid var(--cs-line);
+  background: transparent;
+  color: var(--cs-ink);
+}
+.xp-cancel:hover,
+.xp-restart:hover,
+.start-footer button:hover,
+.xp-cancel:focus-visible,
+.xp-restart:focus-visible,
+.start-footer button:focus-visible {
+  border-color: var(--cs-accent);
+  color: var(--cs-accent);
+  outline: none;
+}
+.xp-continue {
+  padding: 8px 14px;
+  border: 1px solid var(--cs-accent);
+  background: var(--cs-accent);
+  color: #050505;
+  font-weight: 700;
+}
+.xp-continue:hover,
+.xp-continue:focus-visible {
+  background: var(--cs-accent-hi);
+  border-color: var(--cs-accent-hi);
+  outline: none;
+}
