@@ -12,9 +12,11 @@ import { initHeroName } from './fx-hero.js';
 import { initStages } from './fx-stages.js';
 import { initTrajectory } from './fx-trajectory.js';
 import { initRocket } from './fx-rocket.js';
+import { createSmoothScroll } from './fx-smooth.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
+const smooth = createSmoothScroll();
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
 const peek = initPeek(() => {
@@ -33,6 +35,9 @@ function syncAmbient() {
 	else sky.stop();
 	if (active) orb.start();
 	else orb.stop();
+	// Smooth scrolling is for the portfolio view only; the resume keeps native scrolling.
+	if (active) smooth.start();
+	else smooth.stop();
 }
 
 function savedMode() {
