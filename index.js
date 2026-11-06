@@ -31,10 +31,14 @@ const peek = initPeek(() => {
 	window.scrollTo(0, 0);
 });
 
+// The starfield is dropped on phones, where it costs the most for the least effect.
+const wide = window.matchMedia('(min-width: 860px)');
+wide.addEventListener('change', () => syncAmbient());
+
 function syncAmbient() {
 	const active = document.body.dataset.theme === 'portfolio';
 	const dark = document.body.dataset.mode !== 'light';
-	if (active && dark) sky.start();
+	if (active && dark && wide.matches) sky.start();
 	else sky.stop();
 	if (active) orb.start();
 	else orb.stop();
