@@ -2627,5 +2627,10 @@ body[data-theme="portfolio"] .peek {
     box-shadow: none !important;
     border: 0 !important;
   }
+  .paper {
+    transform: none !important;
+    box-shadow: none !important;
+    border: 0 !important;
+  }
 }
 
