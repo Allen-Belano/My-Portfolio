@@ -13,6 +13,8 @@ import {
 	startingTrust,
 	foodClickAllowed,
 	seeded,
+	createSecretWord,
+	createTapCounter,
 } from './brain.js';
 import { NS, stageSvg, empanada } from './art.js';
 
@@ -21,6 +23,9 @@ import { NS, stageSvg, empanada } from './art.js';
 // runs from it, until he trusts you. Click or tap empty space to drop an Ilocos empanada; he grabs it with
 // his tail and eats it. He can be poked, petted (hover slowly), dragged, thrown and shaken, and his face
 // shows how he feels about it. If he likes you enough he opens a portal to the portfolio.
+//
+// Easter egg: type "kosmo" anywhere (or tap the name at the top of the resume 5 times quickly) and he
+// comes and opens his portal straight away, however he feels about you.
 //
 // The brain (brain.js) decides how he feels; this file moves and draws him.
 // Test hooks: window.__kosmoConfig = { arriveAfter, cooldown, stay, seed, trust }.
@@ -250,6 +255,7 @@ export function initKosmo({ onPortal } = {}) {
 	const stayIgnored = Number.isFinite(config.stay) ? config.stay : 60000;
 	let greeted = false;
 	let foodSeq = 0;
+	let wish = false;
 	const foods = [];
 	const parts = [];
 	const bub = { t: 0, w: 60 };
@@ -399,6 +405,7 @@ export function initKosmo({ onPortal } = {}) {
 	}
 
 	function goAway() {
+		wish = false;
 		setState('away');
 		stage.dataset.present = 'false';
 		el.kosmo.style.display = 'none';
@@ -443,6 +450,36 @@ export function initKosmo({ onPortal } = {}) {
 		hearts(3);
 		setState('portal');
 		if (document.activeElement === btn) announce('Kosmo opened a portal to the portfolio. Press Tab to go through it.');
+	}
+
+	// The easter egg. He comes if he is away, turns back if he is leaving, and opens the portal as soon as
+	// he is on his feet: right away if he is free, or once he is done being held, thrown or eating.
+	function summonPortal() {
+		if (!active || state === 'enter-portal') return;
+		lastEngaged = now;
+		if (state === 'portal') {
+			stateT = 0;
+			return;
+		}
+		wish = true;
+		if (state === 'away') {
+			arrive({ fast: true, side: 'right' });
+			return;
+		}
+		if (state === 'leave') {
+			k.enterTarget = clamp(k.x, minX, maxX);
+			k.fast = true;
+			setState('enter');
+			return;
+		}
+		if (!['enter', 'held', 'air', 'eat'].includes(state)) grantWish();
+	}
+
+	function grantWish() {
+		wish = false;
+		k.rot = 0;
+		k.calm = 0;
+		openPortal();
 	}
 
 	function closePortal(instant = false) {
@@ -538,8 +575,9 @@ export function initKosmo({ onPortal } = {}) {
 			case 'enter': {
 				const food = groundFood() || foods.find((item) => item.state === 'fall');
 				const target = food ? standFor(food) : k.enterTarget;
-				if (moveTo(target, k.fast || food ? 260 : 150, dt)) {
-					if (food) {
+				if (moveTo(wish ? k.enterTarget : target, k.fast || food ? 260 : 150, dt)) {
+					if (wish) grantWish();
+					else if (food) {
 						say('hungry', 1.4);
 						tell('bang');
 						setState('seek');
@@ -768,6 +806,10 @@ export function initKosmo({ onPortal } = {}) {
 	const portalReady = () => wantsPortal(mind, now) && portal.target === 0 && now - portalShownAt > 25000 && now - arrivedAt > 2500;
 
 	function roam(dt, d, walk) {
+		if (wish) {
+			grantWish();
+			return;
+		}
 		const food = groundFood();
 		if (food) {
 			if (!isFull(mind, now)) {
@@ -1412,6 +1454,21 @@ export function initKosmo({ onPortal } = {}) {
 		}
 	});
 	portalBtn.addEventListener('click', enterPortal);
+
+	// Easter egg triggers: the secret word on the keyboard, or quick taps on the name at the top.
+	const secret = createSecretWord('kosmo');
+	window.addEventListener('keydown', (event) => {
+		if (event.ctrlKey || event.metaKey || event.altKey) return;
+		if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable]')) return;
+		if (secret.push(event.key)) summonPortal();
+	});
+	const taps = createTapCounter(5, 2000);
+	document.getElementById('intro-title')?.addEventListener('click', () => {
+		if (taps.tap(performance.now())) {
+			window.getSelection?.()?.removeAllRanges();
+			summonPortal();
+		}
+	});
 	window.addEventListener('keydown', (event) => {
 		if (event.key !== 'Escape' || !active || state === 'away') return;
 		mind = stimulate(mind, 'shooed', now);
