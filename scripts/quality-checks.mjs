@@ -6,8 +6,12 @@ const root = process.cwd();
 const resumeDir = root;
 const htmlPath = path.join(resumeDir, 'index.html');
 const cssPath = path.join(resumeDir, 'style.css');
-// The entry point plus every effect module (fx-*.js).
-const scripts = ['index.js', ...readdirSync(root).filter((file) => /^fx-[\w-]+\.js$/.test(file)).sort()];
+// The entry point, every effect module (fx-*.js) and the Kosmo mascot modules (kosmo/*.js).
+const scripts = [
+  'index.js',
+  ...readdirSync(root).filter((file) => /^fx-[\w-]+\.js$/.test(file)).sort(),
+  ...(existsSync(path.join(root, 'kosmo')) ? readdirSync(path.join(root, 'kosmo')).filter((file) => file.endsWith('.js')).sort().map((file) => `kosmo/${file}`) : []),
+];
 const failures = [];
 
 function fail(message) {
@@ -15,9 +19,11 @@ function fail(message) {
 }
 
 function checkFiles() {
-  for (const file of ['index.html', 'style.css', 'photo.jpg', ...scripts]) {
+  for (const file of ['index.html', 'style.css', 'photo.jpg', 'kosmo/brain.js', 'kosmo/kosmo.js', 'kosmo/art.js', ...scripts]) {
     if (!existsSync(path.join(resumeDir, file))) fail(`Missing ${file}`);
   }
+  // Kosmo Gaea replaced the peeking alien.
+  if (existsSync(path.join(resumeDir, 'fx-peek.js'))) fail('fx-peek.js should be removed: Kosmo replaced the peeker');
 }
 
 function checkHtml() {
@@ -25,6 +31,9 @@ function checkHtml() {
   const html = readFileSync(htmlPath, 'utf8');
   if (!/^<!doctype html>/i.test(html.trim())) fail('index.html must begin with a doctype');
   if (!/<title>[^<]+<\/title>/i.test(html)) fail('index.html must include a non-empty title');
+
+  if (/data-peek/.test(html)) fail('index.html still contains the old peeker (data-peek)');
+  if (!/<div class="paper" data-paper>/.test(html)) fail('index.html must wrap the resume in <div class="paper" data-paper>');
 
   const ids = [...html.matchAll(/\bid=["']([^"']+)["']/gi)].map((match) => match[1]);
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
