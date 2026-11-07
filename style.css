@@ -397,20 +397,27 @@ h3 {
   }
 }
 
-/* The original resume view is intentionally simple; the button reveals the portfolio view. */
+/* The paper view: the resume as one sheet of paper on a grey desk. The sheet is its own element (.paper),
+   not the body, so it can tilt (see fx-paper.js) without moving the fixed elements around it. */
 body:not([data-theme="portfolio"]) {
-  width: min(816px, 100%);
-  min-height: 1056px;
-  margin: 22px auto;
-  padding: 27px 48px;
   color: #000;
-  background: #fff;
-  border: 1px solid #c9cbc9;
-  box-shadow: 0 3px 14px rgba(28, 34, 31, 0.16);
+  background: transparent;
   font:
     11px Arial,
     sans-serif;
   line-height: 1.25;
+  /* The tilted sheet can reach a few pixels past its margins; never let that add a sideways scroll. */
+  overflow-x: clip;
+}
+body:not([data-theme="portfolio"]) .paper {
+  position: relative;
+  width: min(816px, 100%);
+  min-height: 1056px;
+  margin: 22px auto;
+  padding: 27px 48px;
+  background: #fff;
+  border: 1px solid #c9cbc9;
+  box-shadow: 0 3px 14px rgba(28, 34, 31, 0.16);
 }
 body:not([data-theme="portfolio"]) .section-shell,
 body:not([data-theme="portfolio"]) .site-header {
@@ -729,7 +736,7 @@ body:not([data-theme="portfolio"]) .site-footer span {
   display: block;
 }
 @media (max-width: 600px) {
-  body:not([data-theme="portfolio"]) {
+  body:not([data-theme="portfolio"]) .paper {
     width: calc(100% - 16px);
     min-height: 0;
     margin: 8px auto;
@@ -786,9 +793,7 @@ body[data-theme="portfolio"][data-mode="light"] {
   --pf-nav: rgba(244, 246, 250, 0.9);
   background: var(--pf-bg);
 }
-body[data-theme="portfolio"] > .site-header,
-body[data-theme="portfolio"] > main,
-body[data-theme="portfolio"] > .site-footer {
+body[data-theme="portfolio"] > .paper {
   display: none;
 }
 .portfolio-view {
