@@ -740,7 +740,15 @@ export function initKosmo({ onPortal } = {}) {
 		if (portal.target === 0 && portal.open < 0.02) el.portal.style.display = 'none';
 	}
 
-	const standFor = (food) => clamp(food.x + (food.x > k.x ? -1 : 1) * 144 * s, minX - 40, maxX + 40);
+	// Where he stands to reach food with his tail: fully on screen, the tail stretches the rest. He faces the
+	// food, and his helmet lid swings open behind him to eat, so leave more room on his back side.
+	const standFor = (food) => {
+		const side = food.x > k.x ? -1 : 1;
+		const back = 124 * s + 6;
+		const low = side < 0 ? back : minX;
+		const high = side > 0 ? Wd - back : maxX;
+		return clamp(food.x + side * 144 * s, low, high);
+	};
 
 	function moveTo(target, speed, dt, free = false) {
 		const d = target - k.x;
@@ -751,7 +759,7 @@ export function initKosmo({ onPortal } = {}) {
 		let step = Math.sign(d) * speed * dt;
 		if (Math.abs(step) > Math.abs(d)) step = d;
 		k.x += step;
-		if (!free && state !== 'enter') k.x = clamp(k.x, minX - 40, maxX + 40);
+		if (!free && state !== 'enter') k.x = clamp(k.x, minX, maxX);
 		k.facing = d < 0 ? 'left' : 'right';
 		k.walking = true;
 		return false;

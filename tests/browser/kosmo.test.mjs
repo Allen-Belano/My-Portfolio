@@ -60,6 +60,18 @@ test('clicking empty space drops an empanada and lures him in', async () => {
 	await context.close();
 });
 
+test('he stays on screen while eating food that landed near the edge', async () => {
+	const { page, context } = await openPage(browser, server.url, { kosmo: { arriveAfter: 600000, seed: 2, trust: 0.3 } });
+	await page.mouse.click(1150, 250);
+	await page.mouse.move(100, 50);
+	await page.waitForFunction(() => document.getElementById('kosmo-stage').dataset.state === 'eat', null, { timeout: 8000 });
+	await page.waitForTimeout(400);
+	// His body (the head and torso) must be fully inside the window; the tail may reach.
+	const body = await page.locator('#k-bob').boundingBox();
+	assert.ok(body.x >= 0 && body.x + body.width <= 1280, `body spans ${Math.round(body.x)} to ${Math.round(body.x + body.width)}`);
+	await context.close();
+});
+
 test('clicking resume text or a link drops no food', async () => {
 	const { page, context } = await openPage(browser, server.url, { kosmo: { arriveAfter: 600000 } });
 	const lede = page.locator('.hero-lede');
