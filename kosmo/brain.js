@@ -229,3 +229,34 @@ export function startingTrust(memory, rng = Math.random) {
 export function foodClickAllowed({ interactive, onText, selecting, foods, maxFoods = 2 }) {
 	return !interactive && !onText && !selecting && foods < maxFoods;
 }
+
+// Easter egg: typing his secret word anywhere opens his portal. Only single characters count (Shift and
+// friends are ignored); a wrong letter starts the word over.
+export function createSecretWord(word) {
+	const letters = word.toLowerCase();
+	let at = 0;
+	return {
+		push(key) {
+			if (typeof key !== 'string' || key.length !== 1) return false;
+			const letter = key.toLowerCase();
+			if (letter === letters[at]) at += 1;
+			else at = letter === letters[0] ? 1 : 0;
+			if (at < letters.length) return false;
+			at = 0;
+			return true;
+		},
+	};
+}
+
+// Easter egg for phones: a few quick taps in a row. Fires once, then counts from zero again.
+export function createTapCounter(count, withinMs) {
+	let times = [];
+	return {
+		tap(time) {
+			times = [...times.filter((t) => time - t < withinMs), time];
+			if (times.length < count) return false;
+			times = [];
+			return true;
+		},
+	};
+}
