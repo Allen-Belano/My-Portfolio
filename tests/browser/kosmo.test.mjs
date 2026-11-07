@@ -173,3 +173,49 @@ test('on a phone, tapping empty paper drops an empanada', async () => {
 	assert.equal(await stage(page).getAttribute('data-foods'), '1');
 	await context.close();
 });
+
+test('easter egg: typing "kosmo" brings even a wary Kosmo with his portal open', async () => {
+	const { page, context, errors } = await openPage(browser, server.url, { kosmo: { arriveAfter: 600000, seed: 4, trust: -0.6 } });
+	await page.mouse.move(640, 300);
+	await page.keyboard.type('KosMo');
+	const portal = page.locator('#kosmo-portal');
+	await portal.waitFor({ state: 'visible', timeout: 6000 });
+	assert.equal(await stage(page).getAttribute('data-state'), 'portal');
+	await portal.click();
+	await page.waitForFunction(() => document.body.dataset.theme === 'portfolio', null, { timeout: 5000 });
+	assert.deepEqual(errors, []);
+	await context.close();
+});
+
+test('easter egg: the secret word is ignored while typing in a field', async () => {
+	const { page, context } = await openPage(browser, server.url, { kosmo: { arriveAfter: 600000 } });
+	await page.evaluate(() => {
+		const input = document.createElement('input');
+		input.id = 'egg-field';
+		document.body.prepend(input);
+	});
+	await page.locator('#egg-field').type('kosmo');
+	await page.waitForTimeout(600);
+	assert.equal(await stage(page).getAttribute('data-present'), 'false');
+	await context.close();
+});
+
+test('easter egg: five quick taps on the name open the portal on a phone', async () => {
+	const { page, context } = await openPage(browser, server.url, {
+		viewport: { width: 390, height: 844 },
+		touch: true,
+		kosmo: { arriveAfter: 600000, seed: 4, trust: -0.6 },
+	});
+	const name = page.locator('#intro-title');
+	for (let i = 0; i < 5; i++) await name.tap();
+	await page.locator('#kosmo-portal').waitFor({ state: 'visible', timeout: 6000 });
+	await context.close();
+});
+
+test('Kosmo is drawn smaller than before', async () => {
+	const { page, context } = await openPage(browser, server.url, { kosmo: { arriveAfter: 300, seed: 3 } });
+	await page.waitForFunction(() => document.getElementById('kosmo-stage').dataset.present === 'true');
+	const { box } = await kosmoCenter(page);
+	assert.ok(box.height < 140, `Kosmo is ${Math.round(box.height)}px tall`);
+	await context.close();
+});
