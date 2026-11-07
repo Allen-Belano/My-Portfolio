@@ -123,9 +123,17 @@ The assistant's answers are fixed text in `KNOWLEDGE` in `fx-bot.js`. They are w
 ## Quality checks
 
 ```
-npm run check     # files, HTML structure, duplicate IDs, alt text, local assets, CSS braces, JS syntax
-npm run check:js  # JavaScript syntax only
+npm install                     # once: test tools (Playwright, and GSAP and Lenis for offline browser tests)
+npx playwright install chromium # once: the browser the browser tests use
+
+npm run check         # static checks (files, HTML, IDs, alt text, assets, CSS braces, JS syntax) and unit tests
+npm run test:unit     # unit tests only (node:test): the paper tilt maths and Kosmo's brain
+npm run test:browser  # browser tests (Playwright): the paper view and Kosmo, desktop and phone sizes
+npm test              # everything
+npm run check:js      # JavaScript syntax only
 ```
+
+Browser tests serve the site from a local server and load GSAP and Lenis from `node_modules` instead of the CDNs, so they run offline.
 
 ## Local preview
 
