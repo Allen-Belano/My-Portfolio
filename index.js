@@ -23,6 +23,7 @@ import { initParallax } from './fx-parallax.js';
 import { initCut } from './fx-cut.js';
 import { initFilm, filmQuery } from './fx-film.js';
 import { initLean } from './fx-lean.js';
+import { initPaper } from './fx-paper.js';
 
 const themeToggles = document.querySelectorAll('.theme-toggle');
 const modeToggles = document.querySelectorAll('.pf-mode');
@@ -30,6 +31,7 @@ const smooth = createSmoothScroll();
 const hud = initHud();
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
+const paper = initPaper();
 const peek = initPeek(() => {
 	setTheme('portfolio');
 	window.scrollTo(0, 0);
@@ -79,6 +81,7 @@ function setTheme(theme) {
 	});
 	syncAmbient();
 	peek.setActive(!isPortfolio);
+	paper.setActive(!isPortfolio);
 	syncHash(isPortfolio);
 	if (isPortfolio) {
 		playIntro();
@@ -149,7 +152,10 @@ initDecode({ observe: !film });
 filmQuery.addEventListener('change', () => location.reload());
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
-else peek.setActive(true);
+else {
+	peek.setActive(true);
+	paper.setActive(true);
+}
 window.addEventListener('hashchange', () => {
 	if (location.hash === '#portfolio') setTheme('portfolio');
 });
