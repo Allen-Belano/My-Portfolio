@@ -2,14 +2,14 @@
 
 Personal portfolio of Allen Joshua O. Belano. One page with two views:
 
-- **Resume** (the default): a clean, printable resume with a Download PDF link to `resume.pdf`.
+- **Resume**, also called the paper view (the default): a clean, printable resume on a sheet of paper that tilts with the mouse, with Kosmo Gaea, an alien dog, wandering along the bottom.
 - **Portfolio**: a scroll-based "mission log" in a dark space theme, with a starfield, a 3D orbit, pinned stages and an automated assistant.
 
 Moved here from the `MY RESUME` folder of [Practice-Space](https://github.com/Allen-Belano/Practice-Space), with its commit history kept.
 
 ## Getting to the portfolio view
 
-The resume has no visible button for it. A small creature peeks in from a screen edge now and then; clicking it, or reaching it with Tab (it is the last stop), opens the portfolio view. It is hidden below 720px and in print.
+The resume has no visible button for it. Kosmo Gaea opens a portal to it once he likes you (see below); clicking or tapping the portal, or reaching it with Tab, opens the portfolio view.
 
 `index.html#portfolio` opens the portfolio view directly, so that is the link to share. **Plain resume** in the portfolio top bar goes back to the resume.
 
