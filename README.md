@@ -25,6 +25,7 @@ The resume has no visible button for it. Kosmo Gaea opens a portal to it once he
 - **Hands on him.** Clicking him pokes him: once is fine, many pokes in a row make him annoyed, then angry. Hovering slowly over him pets him. He can be dragged by the scruff, thrown (he bounces, and either loves it or gets annoyed) and shaken (dizzy, then angry).
 - **Feelings.** His face shows his mood: happy, friendly, hungry, scared, annoyed, angry, sad, dizzy, sleepy (late at night, Manila time) or full. He remembers how much he trusts you between visits (`kosmo-memory` in localStorage), with a different temperament each visit.
 - **The portal.** Once he trusts you enough he says "Come with me!" and opens a portal to the portfolio view. It closes after about 14 seconds if you don't go through.
+- **Easter egg.** Type `kosmo` anywhere on the resume (not in a text field), or tap the name at the top five times quickly on a phone, and he comes straight away and opens the portal, however he feels about you.
 - **Keyboard.** His button is the last stop in the tab order. Focusing it brings him in; Enter pets him, F feeds him, Escape sends him away (Escape works with the mouse too).
 - **Reduced motion:** he moves slowly, does not hop or spin, and released drops fall without a throw. He is hidden in print and in the portfolio view.
 
