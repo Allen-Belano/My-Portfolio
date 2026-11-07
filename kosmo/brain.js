@@ -47,3 +47,112 @@ export function seeded(seed) {
 		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 	};
 }
+
+export function createMind({ trust = 0.2, hunger = 0.6, visits = 0 } = {}) {
+	return {
+		trust: clamp(trust, -1, 1),
+		hunger: clamp(hunger, 0, 1),
+		irritation: 0,
+		visits,
+		fed: [],
+		pokes: [],
+		dizzyUntil: -Infinity,
+		angryUntil: -Infinity,
+		annoyedUntil: -Infinity,
+		happyUntil: -Infinity,
+		sadUntil: -Infinity,
+	};
+}
+
+// Returns a new mind after something happens to him. Never changes the mind it is given.
+export function stimulate(mind, event, now) {
+	const next = { ...mind, fed: [...mind.fed], pokes: [...mind.pokes] };
+	const trust = (delta) => {
+		next.trust = clamp(next.trust + delta, -1, 1);
+	};
+	const irritate = (delta) => {
+		next.irritation = clamp(next.irritation + delta, 0, 1);
+	};
+
+	switch (event) {
+		case 'fed':
+			trust(0.22);
+			irritate(-0.2);
+			next.hunger = clamp(next.hunger - 0.4, 0, 1);
+			next.fed = [...recent(next.fed, now, 90000), now];
+			next.happyUntil = now + 4000;
+			next.sadUntil = -Infinity;
+			break;
+		case 'pet':
+			trust(0.12);
+			irritate(-0.1);
+			next.happyUntil = now + 2500;
+			next.sadUntil = -Infinity;
+			break;
+		case 'poke': {
+			next.pokes = [...recent(next.pokes, now, 5000), now];
+			const count = next.pokes.length;
+			if (count >= 5) {
+				next.angryUntil = now + 5000;
+				trust(-0.1);
+				irritate(0.3);
+			} else if (count >= 3) {
+				next.annoyedUntil = now + 3000;
+				trust(-0.03);
+				irritate(0.15);
+			} else {
+				next.happyUntil = now + 1200;
+			}
+			break;
+		}
+		case 'shaken':
+			next.dizzyUntil = now + 2500;
+			next.angryUntil = now + 7000;
+			trust(-0.35);
+			irritate(0.5);
+			break;
+		case 'hard-landing':
+			next.dizzyUntil = now + 1800;
+			next.annoyedUntil = now + 4000;
+			trust(-0.08);
+			irritate(0.15);
+			break;
+		case 'fun-throw':
+			next.happyUntil = now + 2000;
+			trust(0.03);
+			break;
+		case 'chased':
+			trust(-0.02);
+			irritate(0.15);
+			break;
+		case 'ignored':
+			next.sadUntil = now + 6000;
+			break;
+		case 'shooed':
+			next.annoyedUntil = now + 3000;
+			trust(-0.05);
+			break;
+		default:
+			break;
+	}
+	return next;
+}
+
+export function isFull(mind, now) {
+	return recent(mind.fed, now, 90000).length >= 3 || mind.hunger < 0.05;
+}
+
+// The mood that shows on his face, most urgent first.
+export function moodOf(mind, now) {
+	if (now < mind.dizzyUntil) return 'dizzy';
+	if (now < mind.angryUntil) return 'angry';
+	if (now < mind.annoyedUntil) return 'annoyed';
+	if (now < mind.happyUntil) return 'happy';
+	if (isFull(mind, now)) return 'full';
+	if (now < mind.sadUntil) return 'sad';
+	if (mind.trust >= 0.7) return 'friendly';
+	if (mind.hunger > 0.85) return 'hungry';
+	return 'neutral';
+}
+
+// He is enemies with the cursor until he trusts it. The more irritated he is, the earlier he bolts.
