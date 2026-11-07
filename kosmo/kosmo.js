@@ -181,14 +181,14 @@ export function initKosmo({ onPortal } = {}) {
 	let Wd = 0;
 	let Ht = 0;
 	let gy = 0;
-	let s = 0.8;
+	let s = 0.56;
 	let minX = 80;
 	let maxX = 300;
 	function resize() {
 		Wd = window.innerWidth;
 		Ht = window.innerHeight;
 		gy = Ht - GROUND;
-		s = Wd < 720 ? 0.55 : 0.8;
+		s = Wd < 720 ? 0.4 : 0.56;
 		el.svg.setAttribute('viewBox', `0 0 ${Wd} ${Ht}`);
 		minX = 84 * s + 6;
 		maxX = Math.max(minX + 10, Wd - 84 * s - 6);
