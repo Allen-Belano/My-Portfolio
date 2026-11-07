@@ -1579,6 +1579,10 @@ body[data-mode="light"] .pf-sky {
 .pf-progress[hidden] {
   display: none;
 }
+/* The film sets the indicator up as soon as the page loads, even while the paper view is showing. */
+body:not([data-theme="portfolio"]) .pf-progress {
+  display: none;
+}
 
 /* The hero name grows from its left edge as the page scrolls (see fx-hero.js) */
 #pf-title {
