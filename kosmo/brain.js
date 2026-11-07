@@ -204,3 +204,28 @@ export function throwVelocity(samples, maxSpeed = 2600, windowMs = 100) {
 	}
 	return { vx, vy };
 }
+
+// What he remembers about this visitor between visits.
+export function remember(mind) {
+	return JSON.stringify({ trust: mind.trust, visits: (mind.visits || 0) + 1 });
+}
+
+export function recall(text) {
+	try {
+		const data = JSON.parse(text);
+		const trust = Number.isFinite(data?.trust) ? clamp(data.trust, -1, 1) : 0.2;
+		const visits = Number.isFinite(data?.visits) ? Math.max(0, Math.floor(data.visits)) : 0;
+		return { trust, visits };
+	} catch {
+		return { trust: 0.2, visits: 0 };
+	}
+}
+
+// Sometimes he just wants to be friends with you. Sometimes not.
+export function startingTrust(memory, rng = Math.random) {
+	return clamp(memory.trust - 0.25 + rng() * 0.45, -1, 1);
+}
+
+export function foodClickAllowed({ interactive, onText, selecting, foods, maxFoods = 2 }) {
+	return !interactive && !onText && !selecting && foods < maxFoods;
+}
