@@ -418,6 +418,19 @@ body:not([data-theme="portfolio"]) .paper {
   background: #fff;
   border: 1px solid #c9cbc9;
   box-shadow: 0 3px 14px rgba(28, 34, 31, 0.16);
+  transition: box-shadow 0.4s ease;
+}
+/* While tilted the sheet lifts off the desk, and light rakes across it from the side that rises. */
+body:not([data-theme="portfolio"]) .paper.is-tilting {
+  box-shadow: 0 16px 38px rgba(28, 34, 31, 0.2);
+}
+body:not([data-theme="portfolio"]) .paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(130% 95% at var(--paper-light-x, 50%) 35%, transparent 45%, rgba(16, 22, 28, 0.09));
+  opacity: var(--paper-light, 0);
 }
 body:not([data-theme="portfolio"]) .section-shell,
 body:not([data-theme="portfolio"]) .site-header {
@@ -2631,6 +2644,9 @@ body[data-theme="portfolio"] .peek {
     transform: none !important;
     box-shadow: none !important;
     border: 0 !important;
+  }
+  .paper::after {
+    display: none !important;
   }
 }
 
