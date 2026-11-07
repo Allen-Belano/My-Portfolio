@@ -13,6 +13,10 @@ The resume has no visible button for it. Kosmo Gaea opens a portal to it once he
 
 `index.html#portfolio` opens the portfolio view directly, so that is the link to share. **Plain resume** in the portfolio top bar goes back to the resume.
 
+## The paper view
+
+**Tilting paper** (`fx-paper.js`): the resume is one sheet (`<div class="paper" data-paper>`) that tilts up to 4.5° toward the mouse, with light raking across it. It springs flat while scrolling or when the mouse rests, so the text is crisp to read. Mouse only, 900px and wider, never with reduced motion or in print. The sheet is its own element, not the body, so tilting it does not move any fixed element.
+
 ## Portfolio stages
 
 Each stage has a small mono label above a plain heading. The label is hidden from screen readers, so they read only the heading.
