@@ -168,3 +168,39 @@ export function wantsPortal(mind, now) {
 }
 
 // Detects a shake while he is held: several fast reversals of direction in a short window.
+export function createShakeDetector({ windowMs = 700, reversals = 4, minSpeed = 500 } = {}) {
+	let lastSign = 0;
+	let flips = [];
+	return {
+		sample(t, vx, vy = 0) {
+			const speed = Math.abs(vx) >= Math.abs(vy) ? vx : vy;
+			if (Math.abs(speed) < minSpeed) return false;
+			const sign = Math.sign(speed);
+			if (lastSign && sign !== lastSign) flips.push(t);
+			lastSign = sign;
+			flips = flips.filter((time) => t - time <= windowMs);
+			return flips.length >= reversals;
+		},
+		reset() {
+			lastSign = 0;
+			flips = [];
+		},
+	};
+}
+
+// The throw speed (px/s) from the last moments of a drag, capped so a flick cannot launch him to orbit.
+export function throwVelocity(samples, maxSpeed = 2600, windowMs = 100) {
+	if (samples.length < 2) return { vx: 0, vy: 0 };
+	const last = samples[samples.length - 1];
+	const first = samples.find((sample) => last.t - sample.t <= windowMs) || samples[0];
+	const dt = (last.t - first.t) / 1000;
+	if (dt <= 0) return { vx: 0, vy: 0 };
+	let vx = (last.x - first.x) / dt;
+	let vy = (last.y - first.y) / dt;
+	const speed = Math.hypot(vx, vy);
+	if (speed > maxSpeed) {
+		vx = (vx / speed) * maxSpeed;
+		vy = (vy / speed) * maxSpeed;
+	}
+	return { vx, vy };
+}
