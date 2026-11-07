@@ -66,7 +66,7 @@ After about 5 seconds without scrolling, the assistant leaves its corner as a sm
 
 **Below 860px:** no pinning, no starfield, the ticker stops and the orbit renders at a lower pixel ratio. The rocket stays docked.
 
-**With reduced motion on:** the intro is skipped, stages are not pinned, scroll effects are off, the rocket stays docked and the peeker fades in instead of sliding.
+**With reduced motion on:** the intro is skipped, stages are not pinned, scroll effects are off and the rocket stays docked.
 
 ## Structure
 
@@ -74,7 +74,8 @@ After about 5 seconds without scrolling, the assistant leaves its corner as a sm
 - `style.css` holds the resume styles, the portfolio styles and the responsive and print rules.
 - `index.js` is the module entry point. It switches views and starts the effects.
 - One module per effect:
-  - `fx-peek.js`: the peeking creature on the resume
+  - `fx-paper.js`: the tilting paper view
+  - `kosmo/brain.js`, `kosmo/kosmo.js`, `kosmo/art.js`: Kosmo Gaea
   - `fx-intro.js`: the stage 0 intro
   - `fx-sky.js`: the starfield
   - `fx-orb.js`: the three.js orbit in the hero
