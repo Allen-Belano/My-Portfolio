@@ -17,6 +17,19 @@ The resume has no visible button for it. Kosmo Gaea opens a portal to it once he
 
 **Tilting paper** (`fx-paper.js`): the resume is one sheet (`<div class="paper" data-paper>`) that tilts up to 4.5° toward the mouse, with light raking across it. It springs flat while scrolling or when the mouse rests, so the text is crisp to read. Mouse only, 900px and wider, never with reduced motion or in print. The sheet is its own element, not the body, so tilting it does not move any fixed element.
 
+**Kosmo Gaea** (`kosmo/`) is an alien dog in a fishbowl helmet with a long tail, who loves Ilocos empanada and is enemies with the cursor.
+
+- **Visits.** He is away at first. He walks in after 12 to 45 seconds without scrolling, clicking or typing, and leaves sad if nobody plays with him for a minute. Between visits he waits 40 to 90 seconds.
+- **The cursor.** Until he trusts you he runs from it, and leaps over it if you corner him. When he is idle he teases ("Catch me, slowpoke!") and dances.
+- **Food.** Clicking or tapping empty space drops an empanada (never on text, links or a selection; at most two at a time). If he is away, food brings him running. He grabs it with his tail, eats it in bites, and is full after three.
+- **Hands on him.** Clicking him pokes him: once is fine, many pokes in a row make him annoyed, then angry. Hovering slowly over him pets him. He can be dragged by the scruff, thrown (he bounces, and either loves it or gets annoyed) and shaken (dizzy, then angry).
+- **Feelings.** His face shows his mood: happy, friendly, hungry, scared, annoyed, angry, sad, dizzy, sleepy (late at night, Manila time) or full. He remembers how much he trusts you between visits (`kosmo-memory` in localStorage), with a different temperament each visit.
+- **The portal.** Once he trusts you enough he says "Come with me!" and opens a portal to the portfolio view. It closes after about 14 seconds if you don't go through.
+- **Keyboard.** His button is the last stop in the tab order. Focusing it brings him in; Enter pets him, F feeds him, Escape sends him away (Escape works with the mouse too).
+- **Reduced motion:** he moves slowly, does not hop or spin, and released drops fall without a throw. He is hidden in print and in the portfolio view.
+
+The brain (`kosmo/brain.js`) is pure functions, so his behaviour is unit-tested in Node; `kosmo/kosmo.js` moves and draws him; `kosmo/art.js` is his drawing. `#kosmo-stage` mirrors his state as `data-present`, `data-state`, `data-mood` and `data-foods`, for tests and debugging. Tests can set `window.__kosmoConfig` (`arriveAfter`, `cooldown`, `stay`, `seed`, `trust`) before the page loads.
+
 ## Portfolio stages
 
 Each stage has a small mono label above a plain heading. The label is hidden from screen readers, so they read only the heading.
