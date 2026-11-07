@@ -6,7 +6,7 @@ import { initTerminal } from './fx-terminal.js';
 import { createSky } from './fx-sky.js';
 import { createOrb } from './fx-orb.js';
 import { initBot } from './fx-bot.js';
-import { initPeek } from './fx-peek.js';
+import { initKosmo } from './kosmo/kosmo.js';
 import { playIntro } from './fx-intro.js';
 import { initHeroName } from './fx-hero.js';
 import { initStages } from './fx-stages.js';
@@ -32,9 +32,12 @@ const hud = initHud();
 const sky = createSky(document.querySelector('.pf-sky'));
 const orb = createOrb(document.querySelector('[data-orb]'));
 const paper = initPaper();
-const peek = initPeek(() => {
-	setTheme('portfolio');
-	window.scrollTo(0, 0);
+// Kosmo Gaea lives in the paper view. When he likes you, his portal takes you to the portfolio.
+const kosmo = initKosmo({
+	onPortal: () => {
+		setTheme('portfolio');
+		window.scrollTo(0, 0);
+	},
 });
 
 // The starfield is dropped on phones, where it costs the most for the least effect.
@@ -80,7 +83,7 @@ function setTheme(theme) {
 		toggle.setAttribute('aria-pressed', String(isPortfolio));
 	});
 	syncAmbient();
-	peek.setActive(!isPortfolio);
+	kosmo.setActive(!isPortfolio);
 	paper.setActive(!isPortfolio);
 	syncHash(isPortfolio);
 	if (isPortfolio) {
@@ -153,7 +156,7 @@ filmQuery.addEventListener('change', () => location.reload());
 setMode(savedMode());
 if (location.hash === '#portfolio') setTheme('portfolio');
 else {
-	peek.setActive(true);
+	kosmo.setActive(true);
 	paper.setActive(true);
 }
 window.addEventListener('hashchange', () => {
