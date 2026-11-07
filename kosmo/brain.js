@@ -156,3 +156,15 @@ export function moodOf(mind, now) {
 }
 
 // He is enemies with the cursor until he trusts it. The more irritated he is, the earlier he bolts.
+export function wantsToFlee(mind, distance, now) {
+	if (now < mind.dizzyUntil) return false;
+	if (mind.trust >= 0.6) return false;
+	const radius = 150 + mind.irritation * 80 + (mind.trust < 0 ? 40 : 0);
+	return distance < radius;
+}
+
+export function wantsPortal(mind, now) {
+	return mind.trust >= 0.75 && !['angry', 'annoyed', 'dizzy'].includes(moodOf(mind, now));
+}
+
+// Detects a shake while he is held: several fast reversals of direction in a short window.
