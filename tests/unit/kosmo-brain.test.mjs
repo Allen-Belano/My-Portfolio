@@ -15,6 +15,8 @@ import {
 	recall,
 	startingTrust,
 	foodClickAllowed,
+	createSecretWord,
+	createTapCounter,
 } from '../../kosmo/brain.js';
 
 const fixed = (value) => () => value;
@@ -159,4 +161,25 @@ test('food only drops on empty space, never on links, text or a selection', () =
 	assert.equal(foodClickAllowed({ ...empty, onText: true }), false);
 	assert.equal(foodClickAllowed({ ...empty, selecting: true }), false);
 	assert.equal(foodClickAllowed({ ...empty, foods: 2 }), false);
+});
+
+test('typing the secret word anywhere opens his portal, in any case', () => {
+	const secret = createSecretWord('kosmo');
+	const typed = [...'hiKOSMo'].map((key) => secret.push(key));
+	assert.deepEqual(typed, [false, false, false, false, false, false, true]);
+});
+
+test('a wrong key restarts the secret word, but can start it again', () => {
+	const secret = createSecretWord('kosmo');
+	assert.equal([...'koskosmo'].map((key) => secret.push(key)).at(-1), true);
+	assert.equal([...'kosxmo'].some((key) => secret.push(key)), false);
+	assert.equal(secret.push('Shift'), false);
+});
+
+test('five quick taps count, slow taps do not', () => {
+	const taps = createTapCounter(5, 2000);
+	assert.deepEqual([0, 300, 600, 900, 1200].map((t) => taps.tap(t)), [false, false, false, false, true]);
+	assert.equal(taps.tap(1300), false, 'the count starts over after it fires');
+	const slow = createTapCounter(5, 2000);
+	assert.equal([0, 700, 1400, 2100, 2800].some((t) => slow.tap(t)), false);
 });
